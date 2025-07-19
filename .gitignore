@@ -240,3 +240,17 @@ yarn-error.log*
 
 # Cấu hình cụ thể cho dự án
 # Thêm các mẫu loại trừ riêng cho dự án của bạn tại đây 
+
+### Claude setup specific ###
+# Metadata và cấu hình hệ thống
+.superclaude-metadata.json
+
+# Thư mục không cần thiết
+todos/
+statsig/
+shell-snapshots/
+projects/
+logs/
+ide/
+hooks/
+backups/ 
