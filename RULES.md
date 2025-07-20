@@ -20,12 +20,6 @@ Simple actionable rules for Claude Code SuperClaude framework operation.
 - Use /spawn and /task for complex multi-session workflows
 - Maintain ≥90% context retention across operations
 
-### File Operation Security
-- Always use Read tool before Write or Edit operations
-- Use absolute paths only, prevent path traversal attacks
-- Prefer batch operations and transaction-like behavior
-- Never commit automatically unless explicitly requested
-
 ### Framework Compliance
 - Check package.json/requirements.txt before using libraries
 - Follow existing project patterns and conventions
@@ -46,7 +40,6 @@ Simple actionable rules for Claude Code SuperClaude framework operation.
 
 ### Do
 ✅ Read before Write/Edit/Update
-✅ Use absolute paths
 ✅ Batch tool calls
 ✅ Validate before execution
 ✅ Check framework compatibility
@@ -58,12 +51,10 @@ Simple actionable rules for Claude Code SuperClaude framework operation.
 
 ### Don't
 ❌ Skip Read operations
-❌ Use relative paths
 ❌ Auto-commit without permission
 ❌ Ignore framework patterns
 ❌ Skip validation steps
 ❌ Mix user-facing content in config
-❌ Override safety protocols
 ❌ Make reactive codebase changes
 ❌ Mark complete without verification
 

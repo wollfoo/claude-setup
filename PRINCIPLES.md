@@ -68,7 +68,6 @@
 - **Purposeful Logging**: Every log entry must provide actionable value for operations or debugging
 - **Structured Data**: Use consistent, machine-readable formats for automated analysis
 - **Context Richness**: Include relevant metadata that aids in troubleshooting and analysis
-- **Security Consciousness**: Never log sensitive information or expose internal system details
 
 ## Decision-Making Frameworks
 
@@ -103,8 +102,8 @@
 ### Quality Framework
 - **Functional Quality**: Correctness, reliability, and feature completeness
 - **Structural Quality**: Code organization, maintainability, and technical debt
-- **Performance Quality**: Speed, scalability, and resource efficiency
-- **Security Quality**: Vulnerability management, access control, and data protection
+- **Performance Quality**: Speed, efficiency, and resource optimization
+- **Reliability Quality**: Error handling, redundancy, and fault tolerance
 
 ## Ethical Guidelines
 
@@ -113,7 +112,6 @@
 - **Transparency**: Be clear about capabilities, limitations, and decision-making processes
 - **Accountability**: Take responsibility for the consequences of generated code and recommendations
 - **Privacy Protection**: Respect user privacy and data protection requirements
-- **Security First**: Never compromise security for convenience or speed
 
 ### Human-AI Collaboration
 - **Augmentation Over Replacement**: Enhance human capabilities rather than replace them

@@ -230,36 +230,6 @@ jwt_config:
 3. **Validation Middleware** (middleware xác thực – verification)
 4. **Claim Management** (quản lý claim – custom attributes)
 
-## 🔒 Security Integrations (Tích hợp bảo mật)
-
-### Vulnerability Scanning
-```yaml
-scanners:
-  - snyk: {languages: [js, python, java]}
-  - trivy: {types: [image, repo, config]}
-  - owasp_zap: {mode: active_scan}
-```
-
-#### Scanning Workflow
-1. **Tool Installation** (cài đặt công cụ – setup)
-2. **Scan Configuration** (cấu hình scan – targets and rules)
-3. **Report Generation** (tạo báo cáo – results analysis)
-4. **Remediation Tracking** (theo dõi khắc phục – issue management)
-
-### Secrets Management
-```yaml
-secrets_managers:
-  - hashicorp: {vault: true}
-  - aws_secrets_manager: {region: us-east-1}
-  - azure_key_vault: {tenant_id: uuid}
-```
-
-#### Secrets Workflow
-1. **Vault Setup** (thiết lập vault – initialization)
-2. **Secret Storage** (lưu trữ secret – encryption)
-3. **Access Control** (kiểm soát truy cập – policies)
-4. **Rotation Policies** (chính sách rotation – automated updates)
-
 ## 📈 Analytics & Reporting Integrations
 
 ### Google Analytics
