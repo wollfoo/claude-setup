@@ -8,7 +8,8 @@
 @PERSONAS.md
 @ORCHESTRATOR.md
 @MODES.md
-
+@CLAUDE-security.md
+@CLAUDE-research.md
 
 # CLAUDE.md
 
