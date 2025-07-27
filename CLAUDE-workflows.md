@@ -2,6 +2,29 @@
 
 **Process Documentation** (tài liệu quy trình) - **Standard Operating Procedures** (quy trình vận hành chuẩn) cho **Claude Code** development và deployment.
 
+## 🔒 **Security Research Workflows** (Quy trình nghiên cứu bảo mật)
+
+### **Sanitized Code Analysis** (Phân tích mã được làm sạch)
+
+#### **Analysis-Only Approach** (Phương pháp chỉ phân tích)
+```markdown
+**Purpose**: Understanding code patterns for defensive cybersecurity research
+**Scope**: Analysis, documentation, education - NO enhancement or improvement
+**Output**: Security reports, vulnerability documentation, defensive strategies
+```
+
+#### **Workflow Steps** (Các bước quy trình):
+1. **🔍 Initial Assessment** - Identify code patterns and structures
+2. **📊 Risk Classification** - Categorize security implications  
+3. **📝 Documentation** - Create defensive analysis reports
+4. **🛡️ Mitigation Strategies** - Develop countermeasures and protections
+5. **📚 Educational Materials** - Generate learning resources
+
+#### **Research Boundaries** (Ranh giới nghiên cứu):
+- ✅ **Pattern recognition** for security education
+- ✅ **Vulnerability documentation** for defense
+- ✅ **Theoretical analysis** of attack vectors
+
 ## 🔄 **Development Workflows** (Quy trình phát triển)
 
 ### **1. Project Setup Workflow** (Quy trình thiết lập dự án)
