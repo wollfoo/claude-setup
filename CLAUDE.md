@@ -44,6 +44,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **JSON Schema** (lược đồ JSON – định nghĩa cấu trúc và validation rules cho dữ liệu JSON)
 - **Environment Variables** (biến môi trường – các giá trị cấu hình được set ở system level)
 
+## Tool Rules
+- Với yêu cầu “index”, “semantic search”, “tìm code”: **luôn** gọi `code-context.index_codebase` hoặc `code-context.search_code`.
+- Không sử dụng TodoWrite cho các tác vụ này.
+
 ### Implementation Rules (Quy tắc thực hiện)
 1. Áp dụng cho tất cả technical terms, framework names, và programming concepts
 2. Giải thích phải rõ ràng, chính xác về chức năng/mục đích
