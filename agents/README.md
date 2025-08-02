@@ -46,12 +46,19 @@ agents/
 - **code-reviewer.md** (3.4KB) - Review code
 - **documentation-specialist.md** (2.6KB) - Chuyên gia tài liệu
 - **performance-optimizer.md** (1.9KB) - Tối ưu hiệu suất
+- **ai-engineer.md** (1.2KB) - Chuyên gia AI/ML engineering
+- **ml-engineer.md** (1.0KB) - Chuyên gia Machine Learning
+- **data-engineer.md** (1.1KB) - Chuyên gia Data Engineering
+- **database-optimizer.md** (1.2KB) - Tối ưu hóa cơ sở dữ liệu
+- **debugger.md** (2.0KB) - Chuyên gia debug toàn diện
 
 ### **Khi sử dụng:**
 - Cần hiểu codebase legacy
 - Phân tích dependencies và architecture
 - Debug vấn đề phức tạp
 - Review code quality
+- Phát triển AI/ML solutions
+- Xử lý và phân tích dữ liệu
 
 ## 💻 **02-DEVELOPMENT - Tầng Phát Triển**
 
