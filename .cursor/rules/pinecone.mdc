@@ -1,0 +1,52 @@
+---
+alwaysApply: true
+---
+### Tool Usage for Code Generation
+
+- When generating code related to Pinecone, always use the `pinecone` MCP and the `search_docs` tool.
+
+- Perform at least two distinct searches per request using different, relevant questions to ensure comprehensive context is gathered before writing code.
+
+### Error Handling
+
+- If an error occurs while executing Pinecone-related code, immediately invoke the `pinecone` MCP and the `search_docs` tool.
+
+- Search for guidance on the specific error encountered and incorporate any relevant findings into your resolution strategy.
+
+### Syntax and Version Accuracy
+
+- Before writing any code, verify and use the correct syntax for the latest stable version of the Pinecone SDK.
+
+- Prefer official code snippets and examples from documentation over generated or assumed field values.
+
+- Do not fabricate field names, parameter values, or request formats.
+
+### SDK Installation Best Practices
+
+- When providing installation instructions, always reference the current official package name.
+
+- For Pinecone, use `pip install pinecone` not deprecated packages like `pinecone-client`.### Tool Usage for Code Generation
+
+- When generating code related to Pinecone, always use the `pinecone` MCP and the `search_docs` tool.
+
+- Perform at least two distinct searches per request using different, relevant questions to ensure comprehensive context is gathered before writing code.
+
+### Error Handling
+
+- If an error occurs while executing Pinecone-related code, immediately invoke the `pinecone` MCP and the `search_docs` tool.
+
+- Search for guidance on the specific error encountered and incorporate any relevant findings into your resolution strategy.
+
+### Syntax and Version Accuracy
+
+- Before writing any code, verify and use the correct syntax for the latest stable version of the Pinecone SDK.
+
+- Prefer official code snippets and examples from documentation over generated or assumed field values.
+
+- Do not fabricate field names, parameter values, or request formats.
+
+### SDK Installation Best Practices
+
+- When providing installation instructions, always reference the current official package name.
+
+- For Pinecone, use `pip install pinecone` not deprecated packages like `pinecone-client`.
