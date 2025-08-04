@@ -2,9 +2,9 @@
     "model": "sonnet",
     "antml": {
         "thinking": true,
-        "max_thinking_length": 3000
+        "max_thinking_length": 10000
     },
     "env": {
-        "MAX_THINKING_TOKENS": "10000"
+        "MAX_THINKING_TOKENS": "20000"
     }
 }
