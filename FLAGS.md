@@ -1,6 +1,4 @@
-# FLAGS.md - SuperClaude Flag Reference
-
-Flag system for Claude Code SuperClaude framework with auto-activation and conflict resolution.
+# FLAGS.md
 
 ## Flag System Architecture
 

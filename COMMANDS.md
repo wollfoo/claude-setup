@@ -1,13 +1,3 @@
-# COMMANDS.md - SuperClaude Command Execution Framework
-
----
-framework: "SuperClaude v3.0"
-execution-engine: "Claude Code"
-wave-compatibility: "Full"
----
-
-Command execution framework for Claude Code SuperClaude integration.
-
 ## Command System Architecture
 
 ### Core Command Structure
