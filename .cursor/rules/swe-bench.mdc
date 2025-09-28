@@ -1,7 +1,6 @@
 ---
-trigger: manual
+alwaysApply: true
 ---
-
 ---
 type: capability_prompt
 scope: project
