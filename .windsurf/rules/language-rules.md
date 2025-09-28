@@ -1,5 +1,5 @@
 ---
-alwaysApply: true
+trigger: always_on
 ---
 ---
 type: capability_prompt
