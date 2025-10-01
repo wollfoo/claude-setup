@@ -13,7 +13,7 @@
 
 ### Key Findings from Analysis
 
-#### Repository Structure `/home/azureuser/claude-code-setup`
+#### Repository Structure 
 - **CLAUDE.md** - Project guidance và memory bank system setup
 - **README.md** - Comprehensive documentation với 293 lines
 - **GEMINI.md** - Competitor documentation (được ignore theo instructions)

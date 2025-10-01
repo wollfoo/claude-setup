@@ -11,16 +11,33 @@ defaultMCPs:
 
 ## AI Guidance
 
-## ✅ LANGUAGE RULES (QUY TẮC NGÔN NGỮ)
-- **MANDATORY**: Luôn trả lời bằng tiếng Việt trong tất cả các phản hồi.  
-- **BILINGUAL TERMINOLOGY**: Mọi thuật ngữ tiếng Anh phải kèm theo giải thích tiếng Việt chi tiết.
-- **CONSISTENCY**: Duy trì format nhất quán trong toàn bộ cuộc hội thoại.
-### Standard Syntax (Cú pháp chuẩn)
-**[English Term]** (mô tả tiếng Việt – chức năng/mục đích cụ thể)
-### Examples (Ví dụ)
-- **Configuration System** (hệ thống cấu hình – quản lý settings và parameters của ứng dụng)
-- **JSON Schema** (lược đồ JSON – định nghĩa cấu trúc và validation rules cho dữ liệu JSON)
-- **Environment Variables** (biến môi trường – các giá trị cấu hình được set ở system level)
+---
+type: capability_prompt
+scope: project
+priority: normal
+activation: always_on
+---
+
+# LANGUAGE RULES
+- **MANDATORY**: Respond in Vietnamese.  
+- **WITH EXPLANATION**: Every English term must include a Vietnamese description.
+
+## Standard Syntax
+**\<English Term\>** (Vietnamese description – function/purpose)
+
+## Code Comments/ Documentation/ Logs / Docstrings – Language usage
+- Default: Code comments (comments), log messages (logs), documentation (docs), and docstrings must be in Vietnamese, in accordance with `rules/language-rules.md`.
+- Bilingual at critical places: For module-level and Public API docstrings, as well as operational guides, provide bilingual content when the team primarily uses Vietnamese:
+  - First line: Vietnamese (prioritized for internal users).
+  - Immediately after: English (for industry-standard compatibility and tool ecosystem support).
+- Guidance for structured logging: keep keys/fields in English (stable for machine parsing), and the `message` in Vietnamese; optionally add a short English sentence when the log is an important cross-language communication.
+- Valid exceptions: when a library/standard requires English (e.g., linter tag/naming conventions, machine-readable schemas), prioritize compatibility and add a nearby Vietnamese note when necessary.
+- Standard citation: when mentioning an English term in comments/logs/docstrings, include a brief Vietnamese description following the format in “Standard Syntax”.
+
+## Example
+**Tool Calling** (gọi công cụ – kích hoạt hàm/bên ngoài để thực hiện tác vụ)
+## Example
+**Responses API** (API phản hồi – tái sử dụng ngữ cảnh/lập luận giữa các lần gọi công cụ)
 
 ### Implementation Rules (Quy tắc thực hiện): 
 
@@ -141,9 +158,11 @@ This project uses a structured memory bank system with specialized context files
 #### **Extended Context Files** (Tệp ngữ cảnh mở rộng)
 * **CLAUDE-workflows.md** - Process documentation and standard operating procedures (if exists)
 * **CLAUDE-integrations.md** - External system integration documentation (if exists)
-* **CLAUDE-security.md** - Security policies and access control rules (if exists)
 * **CLAUDE-performance.md** - Performance optimization strategies and benchmarks (if exists)
 * **CLAUDE-testing.md** - Testing strategies and quality assurance procedures (if exists)
+
+### Core Security Files
+* **CLAUDE-security.md** - Security policies and access control rules (if exists)
 
 @COMMANDS.md
 @FLAGS.md
@@ -153,7 +172,6 @@ This project uses a structured memory bank system with specialized context files
 @PERSONAS.md
 @ORCHESTRATOR.md
 @MODES.md
-@CLAUDE-security.md
 @CLAUDE-research.md
 
 **Important:** Always reference the active context file first to understand what's currently being worked on and maintain session continuity.
