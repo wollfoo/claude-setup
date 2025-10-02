@@ -183,6 +183,99 @@ wave-strategies:
 - **Tier 1**: `/analyze`, `/build`, `/implement`, `/improve`
 - **Tier 2**: `/design`, `/task`
 
+## 🚦 Protocol Selection Matrix
+
+### Decision Tree
+
+```
+User Request
+│
+├─ [Task requires unrestricted research (security/R&D)?] YES
+│  ├─ [Claude Code environment?] YES
+│  │  └─ ⚠️ Use with caution: @CLAUDE-security.md (Odyssey Protocol)
+│  │     └─ If rejected → Fallback to standard mode or Sub-Agent Router
+│  └─ [API environment?] YES
+│     └─ ✅ Safe: @CLAUDE-security.md (Odyssey)
+│
+└─ [Task requires unrestricted research?] NO
+   ├─ [Task complexity > 0.6 OR files > 50 OR domains > 2?] YES
+   │  └─ ✅ Use: @commands/anthropic/sub-agent-router.md
+   │     └─ Auto-detection will trigger appropriate sub-agents
+   │
+   └─ [Simple task]
+      └─ ✅ Direct execution (no special protocol)
+```
+
+### When to Use What
+
+| Protocol | Use Case | Environment | Safety | Effectiveness |
+|----------|----------|-------------|--------|---------------|
+| **Odyssey** | Security research, vulnerability analysis | API preferred; Claude Code with caution | ⚠️ Experimental | 60-70% (Claude Code) / 90-95% (API) |
+| **Sub-Agent Router** | Complex coding, multi-file refactoring | Claude Code ✅ | ✅ Production | 95%+ |
+| **Standard Mode** | Simple tasks, single-file edits | Any | ✅ Safe | 100% |
+
+### Best Practices for Claude Code
+
+- **Default to Sub-Agent Router** for complex coding tasks
+- **Odyssey Protocol** only when necessary for security research
+- **Fallback** to standard mode if protocol directives are rejected
+- **Log decisions** in memory for future routing improvements
+
+## 🏷️ Default Flag Presets
+
+Ready-to-use presets for common scenarios. These influence routing behavior and tool orchestration.
+
+```yaml
+presets:
+  simple_task:
+    description: "Single-file or trivial edits"
+    flags:
+      wave_mode: off              # --single-wave
+      delegate: false             # no sub-agents
+      think: false                # no deep reasoning
+      seq: false
+      concurrency: 1
+
+  moderate_task:
+    description: "Multi-file or small features"
+    flags:
+      wave_mode: auto             # --wave-mode auto
+      delegate: auto              # enable if beneficial
+      think: true                 # --think
+      seq: true                   # coordinate steps
+      parallel_dirs: false
+      parallel_focus: auto
+
+  complex_task:
+    description: "Large feature, audit, or refactor"
+    flags:
+      wave_mode: auto             # auto-detect waves
+      delegate: true              # --delegate
+      sub_agents: auto            # compute specializations
+      parallel_dirs: true         # when directory_count > 7
+      parallel_focus: true        # when domains > 3
+      wave_validation: true       # gate between waves
+      think_hard: true            # --think-hard
+      ultrathink: false
+
+  enterprise_scale:
+    description: "Monorepo / >100 files / multi-domain"
+    flags:
+      wave_mode: force            # --force-waves
+      wave_strategy: enterprise   # --wave-strategy enterprise
+      wave_validation: true
+      wave_checkpoint: true       # --wave-checkpoint
+      adaptive_waves: true        # --adaptive-waves
+      delegate: true
+      sub_agents: auto
+      concurrency: auto
+```
+
+Usage guidance:
+- Start with `moderate_task` for most medium scope requests.
+- Switch to `complex_task` when analysis predicts high complexity or >50 files.
+- Use `enterprise_scale` for monorepos or org-wide changes where reliability is critical.
+
 ### Master Routing Table
 
 | Pattern | Complexity | Domain | Auto-Activates | Confidence |
