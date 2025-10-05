@@ -1,13 +1,5 @@
 ---
-trigger: manual
----
-
----
-alwaysApply: false
-type: capability_prompt
-scope: project
-priority: normal
-activation: manual
+trigger: always_on
 ---
 
 # TAUBENCH RETAIL – MINIMAL REASONING INSTRUCTIONS
@@ -151,4 +143,3 @@ You MUST plan extensively before each function call, and reflect extensively on 
 - The refund must either go to the original payment method, or an existing gift card.
 - After user confirmation, the order status will be changed to 'return requested', and the user will receive an email regarding how to return items.
 </taubench_retail>
-

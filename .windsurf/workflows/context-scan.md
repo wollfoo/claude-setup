@@ -36,25 +36,23 @@ References:
    - Record import/config relations.
    - Prefer reading providers before consumers.
 5) Module pass:
-   - Read only public APIs, responsibilities, external I/O; avoid deep dives.
 6) Selective deep dive:
    - Dive into central/high-risk functions/classes only.
 7) Verification loop:
    - If new relations are discovered, update the map and revisit impacted areas.
 
-## Constraints
-- Sequential-only: one tool call per step. Do not batch multiple files/queries.
-- Early stop: stop once you can precisely name the content to change.
-- One action per step: either call a tool or reply to the user; never both simultaneously.
-- Low budget: default ≤ 2 tool calls; if you must exceed it, report progress and rationale.
-- Bounded outputs and `file:line` citations (see `rules/environment-profile.md`).
-- No network or state-mutating commands without explicit approval/escalation.
+ ## Constraints
+ - Sequential-only: one tool call per step. Do not batch multiple files/queries.
+ - Early stop: stop once you can precisely name the content to change.
+ - One action per step: either call a tool or reply to the user; never both simultaneously.
+ - Low budget: default ≤ 2 tool calls; if you must exceed it, report progress and rationale.
+ - Bounded outputs and `file:line` citations (see `rules/environment-profile.md`).
+ - Windows/PowerShell: Set Cwd; avoid `cd`; keep outputs bounded (see `rules/environment-profile.md`).
+ - No network or state-mutating commands without explicit approval/escalation.
 
 ## Stop criteria
 - You can identify the exact file/function/class to modify.
 - Search results converge (~70%) on one area.
-
-## Success metrics
 - Budget respected (≤ 2 tool calls for small tasks) or exceedance justified.
 - Clear exit point reached with named target files/symbols and scope.
 - Evidence cited with `file:line` when appropriate; outputs are bounded.

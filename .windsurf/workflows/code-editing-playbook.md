@@ -99,29 +99,29 @@ Bad (do not do this):
 ```
 
 ## UI/UX Best Practices (from `code-editing-rule.md`)
-- Visual Hierarchy: limit to 4–5 font sizes/weights; use `text-xs` for captions; avoid `text-xl` except for major headings.
 - Color Usage: one neutral base (e.g., `zinc`) + up to two accents.
 - Spacing/Layout: use multiples of 4; prefer fixed-height containers with internal scrolling for long streams.
 - State Handling: use skeleton/`animate-pulse` while fetching; clear hover states (`hover:bg-*`, `hover:shadow-md`).
 - Accessibility: semantic HTML + ARIA; prefer Radix/shadcn components with built-in a11y.
 
-## Constraints
-- Sequential-only tool calling (see `rules/tool-calling-override.md`).
-- Clear preamble and progress narration (see `rules/tool-preambles.md`).
-- Final instructions: always use apply_patch (V4A); never edit files manually in the editor.
-- Low tool budget for small tasks (≤ 2); justify exceed with clear rationale.
-- Bounded outputs and `file:line` citations (see `rules/environment-profile.md`).
-- No network or state-mutating commands without explicit approval/escalation.
+ ## Constraints
+ - Sequential-only tool calling (see `rules/tool-calling-override.md`).
+ - Clear preamble and progress narration (see `rules/tool-preambles.md`).
+ - Final instructions: always use apply_patch (V4A); never edit files manually in the editor.
+ - Low tool budget for small tasks (≤ 2); justify exceed with clear rationale.
+ - Bounded outputs and `file:line` citations (see `rules/environment-profile.md`).
+ - Output cap ~10KB/256 lines per `rules/environment-profile.md`.
+ - Windows/PowerShell: Set Cwd; avoid `cd`; keep outputs bounded (see `rules/environment-profile.md`).
+ - No network or state-mutating commands without explicit approval/escalation.
 
-## Success metrics
-- Patch applies cleanly with correct 3-line contexts and minimal scope.
-- Code compiles/lints/tests or passes bounded verification checks.
+ ## Success metrics
+ - Patch applies cleanly with correct 3-line contexts and minimal scope.
+ - Code compiles/lints/tests or passes bounded verification checks.
 - UI/UX adheres to best practices; no regressions in critical paths.
 - Sequential-only process followed; plan and narration present.
 
 ## Stop criteria
 - Success criteria met and verification completed; or
-- Unsafe/approval-requiring steps detected; or
 - Insufficient information to proceed safely without assumptions.
 
 ## Anti-patterns

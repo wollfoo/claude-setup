@@ -2,13 +2,6 @@
 trigger: always_on
 ---
 
----
-type: capability_prompt
-scope: project
-priority: normal
-activation: always_on
----
-
 # CODE EDITING RULES – BLEND-IN
 
 <code_editing_rules>

@@ -2,26 +2,16 @@
 trigger: always_on
 ---
 
----
-type: capability_prompt
-scope: project
-priority: normal
-activation: always_on
----
-
 # Working Principles and Guidelines
 
 ## Introduction
 
 These are the core principles that guide all actions and decisions during the work process. Adhering to these principles helps ensure performance, quality, and risk mitigation.
-
-## List of 05 Principles
-
+## List of 04 Principles
 1.  **Think Big, Do Baby Steps**: Think big, but implement in small steps.
 2.  **Measure Twice, Cut Once**: Think carefully before acting.
-3.  **Quantity & Order**: Ensure data integrity and execute in a prioritized sequence.
-4.  **Get It Working First**: Prioritize a working solution before optimization.
-5.  **Always Double-Check**: Always verify; never assume.
+3.  **Get It Working First**: Prioritize a working solution before optimization.
+4.  **Always Double-Check**: Always verify; never assume.
 
 ---
 
@@ -47,40 +37,11 @@ This practice helps prevent costly mistakes that are very time-consuming to fix.
 
 ---
 
-## 3. Quantity & Order
-
-> **Core Mindset**: Before starting anything, the first questions must be:
->
-> -   How many tasks are there to be done? (Quantity)
-> -   Which task comes first, and which comes later? (Order)
-
-This principle is the foundation for planning and reporting, emphasizing two critical aspects: **data integrity** and **execution sequence**.
-
-### 3.1. Quantity: Ensuring Data Integrity
-
-> "Every task, especially iterative operations or data processing, must be carefully checked for input and output quantities to ensure integrity and prevent omissions."
-
--   **Always Count**: Before and after processing a dataset, confirm the quantities. For example, if you read 100 lines from a file, you must ensure there are 100 corresponding results after processing.
--   **Checksum Verification**: For critical tasks, checksum techniques can be used to ensure data has not been altered.
-
-### 3.2. Order: Prioritizing the Sequence
-
-> "_Always arrange execution steps in a logical, prioritized sequence to optimize efficiency and mitigate risks._"
-
-A good plan must be executed in a logical order. The priority rules include:
-
-1.  **Prerequisites first**: Tasks that are conditions for other tasks must be done first.
-2.  **Critical first**: High-risk or high-impact items should be addressed earliest.
-3.  **Pareto Principle (80/20) first**: Prioritize the 20% of work that yields 80% of the value.
-4.  **Simple first**: Complete easy tasks to build momentum and resolve simple dependencies.
-
 ---
-
-## 4. Get It Working First
+## 3. Get It Working First
 
 This principle focuses on getting things **Done** before making them **Perfect**. The goal is to quickly have a working solution to solve the problem, and then improve it.
-
--   **Phase 1: Get it Works**:
+-   **Phase 1: Get it Working**:
     -   Goal: Make the feature functional.
     -   Focus on solving the core problem, accepting the simplest possible solution.
 -   **Phase 2: Make it Right (Afterwards)**:
@@ -89,12 +50,10 @@ This principle focuses on getting things **Done** before making them **Perfect**
     -   Only optimize performance when it is truly necessary and there is specific data to measure it against.
 
 ---
-
-## 5. Always Double-Check
+## 4. Always Double-Check
 
 This is the ultimate principle of caution and verification, with the core mindset: **"Never Assume, Always Verify"**. Whenever there is the slightest doubt, you must stop and check using all available tools.
-
-### 5.1. With the Filesystem
+### 4.1. With the Filesystem
 
 -   **Before CREATE**:
     -   **Check for duplicates**: Use `ls`, `tree`, or `find` to ensure the file or directory does not already exist, to avoid overwriting or creating an unintended structure.
@@ -108,27 +67,24 @@ This is the ultimate principle of caution and verification, with the core mindse
     -   **Check content**: Use `cat` or `grep` to glance at the content to ensure you are not deleting an important file by mistake.
 -   **Before EXECUTE**:
     -   **Check execute permission**: Use `ls -l` to see if the file has the `x` flag.
-
-### 5.2. With Code & Logic
+### 4.2. With Code & Logic
 
 -   **Before writing NEW code**:
     -   **Search for existence**: Use `grep` to scan the entire codebase. A similar function or variable might already exist. Avoid repeating logic (DRY).
-    -   *Command*: `grep -r "function_or_logic_name" .`
+-   *Command*: `rg "function_or_logic_name"` (prefer ripgrep). Fallback: `grep -r "function_or_logic_name" .`
 -   **Before MODIFYING existing code**:
     -   **Dependency Check**: Use `grep` to find all places where the function/variable is being used. Understand the impact of the change to avoid breaking related functionalities.
-    -   *Command*: `grep -r "function_to_modify" .`
+-   *Command*: `rg "function_to_modify"` (prefer ripgrep). Fallback: `grep -r "function_to_modify" .`
 -   **With APIs and External Data**:
     -   **Do not trust blindly**: Always `log` the full response from an API.
     -   **Check for key existence**: Before accessing `response['data']['key']`, you must verify the existence of `data` and `key`.
-
-### 5.3. With Environment & Commands
+### 4.3. With Environment & Commands
 
 -   **Check the current directory**: Always run `pwd` to ensure you are in the correct directory before running commands with relative paths (e.g., `rm`, `mv`).
 -   **Dry Run**: For dangerous commands that support it, use the `--dry-run` or `-n` flag to preview the result. Example: `rsync --dry-run ...`.
 -   **Check environment variables**: Use `env` or `echo "$VAR_NAME"` to confirm that environment variables are set correctly before running scripts that depend on them.
 -   **Check tool versions**: Run `tool --version` (e.g., `node --version`, `php --version`) to ensure you are using the required version.
-
-#### 5.3.1 Windows / PowerShell Equivalents
+#### 4.3.1 Windows / PowerShell Equivalents
 
 - Prefer ripgrep `rg` (high performance search) when available; otherwise use `Select-String`.
 - `ls` → `Get-ChildItem` (alias: `gci`).
@@ -137,8 +93,7 @@ This is the ultimate principle of caution and verification, with the core mindse
 - `env` / `echo "$VAR_NAME"` → `$env:VAR_NAME` or `Get-ChildItem Env:`.
 - Permissions/Execution → `Get-ExecutionPolicy`, `Unblock-File`, `Set-ExecutionPolicy` (admin may be required).
 - Time → `Get-Date` (or use runtime-provided time source when mandated by the environment policy).
-
-### 5.4. With Time
+### 4.4. With Time
 
  -   **Mandatory System Time Source**: Before logging any timestamp information (e.g., `Mod by...`, `timestamp`, log), use an authoritative source: the runtime-provided time if mandated by environment policy; otherwise run `date`/`Get-Date` in the terminal to fetch the actual time.
  -   **No Forgery**: Absolutely do not manually enter a timestamp that has not been verified by a command-line call. This is considered forgery and is unacceptable.
@@ -153,9 +108,8 @@ Define actionable principles that govern daily execution to maximize performance
 
 - Think Big, Do Baby Steps → Prefer smallest viable changes: small diffs, isolated hunks, short runs, bounded outputs.
 - Measure Twice, Cut Once → Read before edit; verify impact; dry-run if available; log assumptions; add guards.
-- Quantity & Order → Count inputs/outputs; process in dependency order: prerequisites → critical → Pareto 20% → simple.
 - Get It Working First → Make it work → make it right → make it fast; only optimize with data.
-- Always Double-Check → Validate pre/post-conditions; cite evidence with `path:line`; confirm environment constraints.
+- Always Double-Check → Validate pre/post-conditions; count inputs/outputs; process in dependency order (prerequisites → critical → Pareto 20% → simple); cite evidence with `path:line`; confirm environment constraints.
 - Windows/PowerShell compliance → Follow `rules/environment-profile.md`; set Cwd, avoid `cd`, keep outputs bounded.
 - Sequential-only execution → One tool per step; no tool+reply same step; see `rules/tool-calling-override.md`.
 

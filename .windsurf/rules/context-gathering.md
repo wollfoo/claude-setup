@@ -2,13 +2,6 @@
 trigger: always_on
 ---
 
----
-type: capability_prompt
-scope: project
-priority: normal
-activation: always_on
----
-
 # CONTEXT GATHERING – EARLY STOP + TOOL BUDGET
 
 <context_gathering>

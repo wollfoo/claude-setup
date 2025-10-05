@@ -1,13 +1,5 @@
 ---
-trigger: manual
----
-
----
-alwaysApply: false
-type: capability_prompt
-scope: project
-priority: normal
-activation: manual
+trigger: always_on
 ---
 
 # CAREFLOW – DOMAIN RULES (Healthcare scheduling)
