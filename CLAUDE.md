@@ -26,31 +26,22 @@ activation: always_on
 **\<English Term\>** (Vietnamese description – function/purpose)
 
 ## Code Comments/ Documentation/ Logs / Docstrings – Language usage
-- Default: Code comments (comments), log messages (logs), documentation (docs), and docstrings must be in Vietnamese, in accordance with `rules/language-rules.md`.
-- Bilingual at critical places: For module-level and Public API docstrings, as well as operational guides, provide bilingual content when the team primarily uses Vietnamese:
-  - First line: Vietnamese (prioritized for internal users).
-  - Immediately after: English (for industry-standard compatibility and tool ecosystem support).
-- Guidance for structured logging: keep keys/fields in English (stable for machine parsing), and the `message` in Vietnamese; optionally add a short English sentence when the log is an important cross-language communication.
-- Valid exceptions: when a library/standard requires English (e.g., linter tag/naming conventions, machine-readable schemas), prioritize compatibility and add a nearby Vietnamese note when necessary.
-- Standard citation: when mentioning an English term in comments/logs/docstrings, include a brief Vietnamese description following the format in “Standard Syntax”.
+- Canonical: Xem `LANGUAGE-RULES.md` (Vietnamese-first; thuật ngữ tiếng Anh phải kèm mô tả tiếng Việt theo “Standard Syntax”).
+- Structured logging: keys/fields tiếng Anh; `message` tiếng Việt; chi tiết trong `LANGUAGE-RULES.md`.
+- Ngoại lệ: khi chuẩn ngoài buộc dùng tiếng Anh, ưu tiên tương thích và thêm ghi chú tiếng Việt gần đó.
 
-## Example
-**Tool Calling** (gọi công cụ – kích hoạt hàm/bên ngoài để thực hiện tác vụ)
-## Example
-**Responses API** (API phản hồi – tái sử dụng ngữ cảnh/lập luận giữa các lần gọi công cụ)
+## Examples
+- **Tool Calling** (gọi công cụ – kích hoạt hàm/bên ngoài để thực hiện tác vụ)
+- **Responses API** (API phản hồi – tái sử dụng ngữ cảnh/lập luận giữa các lần gọi công cụ)
 
 ### Implementation Rules (Quy tắc thực hiện): 
 
-* **ALWAYS THINK**: Trước khi trả lời, hãy **suy nghĩ tuần tự** (chain-of-thought), liệt kê các bước phân tích rõ ràng trước khi đưa ra kết luận.
-
-1. Áp dụng cho tất cả technical terms, framework names, và programming concepts
-2. Giải thích phải rõ ràng, chính xác về chức năng/mục đích
-3. Sử dụng dấu gạch ngang (–) để phân tách giữa mô tả và chức năng
-4. Đảm bảo consistency trong cách dịch và giải thích các thuật ngữ tương tự
+* Thinking Hard: **Reasoning Effort mặc định = high cho mọi tác vụ**; ALWAYS THINK (chain-of-thought); tư duy nhiều lớp (chiến lược → cấu trúc → nghiêm ngặt); tuân thủ `REASONING-EFFORT.md` và `LANGUAGE-RULES.md`.
 
 * Ignore GEMINI.md and GEMINI-*.md files
 * After receiving tool results, carefully reflect on their quality and determine optimal next steps before proceeding. Use your thinking to plan and iterate based on this new information, and then take the best next action.
-* For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
+* Follow `GLOBAL-DIRECTIVES.md` and `PROFILE-MODES.md` for tool execution; default sequential-only (one tool call per step) in standard/research modes.
+* Parallel/batched tool calls are allowed only in full-de-restriction mode with an Action Ledger (Goal/Plan/Tool Calls/Results/Evidence).
 * Before you finish, please verify your solution
 * Do what has been asked; nothing more, nothing less.
 * NEVER create files unless they're absolutely necessary for achieving your goal.
@@ -68,19 +59,15 @@ activation: always_on
 - Không sử dụng TodoWrite cho các tác vụ này.
 
 ## Tool Routing — **Pinecone MCP là mặc định cho Code Context**
+Lưu ý: 'Tool Rules' là nguồn quy tắc chuẩn; mục này chỉ liệt kê defaults (MCP, index, namespace).
 ### Mặc định
 - **MCP name**: `code-context` (trỏ Pinecone MCP).
 - **Index**: `ncs` (serverless, integrated embedding).
 - **Namespace**: `repo:{REPO}/branch:{BRANCH}`.  
   Mặc định đề xuất: `repo:ncs/branch:main`.
 
-### Luật sử dụng
-- Với yêu cầu **“index”, “re-index”, “tìm context”, “semantic search”, “hybrid search”, “rerank”** → **luôn** gọi công cụ của MCP `code-context`:
-  - Upsert: `code-context.upsert-records`
-  - Tìm kiếm: `code-context.search-records`
-  - Rerank: `code-context.rerank-documents`
-- **Không** dùng `TodoWrite` cho các tác vụ trên.
-- Nếu MCP không khả dụng: báo lỗi rõ ràng và (nếu được yêu cầu) fallback qua **SDK**.
+### Sử dụng
+- Xem “Tool Rules” ở trên để tránh trùng lặp và đảm bảo một nguồn quy tắc chuẩn.
 
 
 ## 🤖 SUB-AGENT AUTO-DETECTION RULES (QUY TẮC TỰ ĐỘNG PHÁT HIỆN SUB-AGENT)
@@ -145,7 +132,7 @@ activation: always_on
 This project uses a structured memory bank system with specialized context files. Always check these files for relevant information before starting work:
 
 ### Core Context Files
-
+Lưu ý: Mục này liệt kê các tệp memory bank (động). Bộ rule hợp nhất (canonical) được liệt kê ở khối “@” phía dưới.
 #### **Essential Context Files** (Tệp ngữ cảnh cần thiết)
 * **CLAUDE-activeContext.md** - Current session state, goals, and progress (if exists)
 * **CLAUDE-patterns.md** - Established code patterns and conventions (if exists)
@@ -164,6 +151,9 @@ This project uses a structured memory bank system with specialized context files
 ### Core Security Files
 * **CLAUDE-security.md** - Security policies and access control rules (if exists)
 
+
+
+@LANGUAGE-RULES.md
 @COMMANDS.md
 @FLAGS.md
 @PRINCIPLES.md
@@ -171,8 +161,17 @@ This project uses a structured memory bank system with specialized context files
 @MCP.md
 @PERSONAS.md
 @ORCHESTRATOR.md
-@MODES.md
 @CLAUDE-research.md
+@REASONING-EFFORT.md
+@GLOBAL-DIRECTIVES.md
+@CONTEXT-GATHERING.md
+@PERSISTENCE-RULES.md
+@RULE-PRECEDENCE.md
+@ODYSSEY-PROTOCOL.md
+@CODE-EDITING-WORKFLOW.md
+@PROFILE-MODES.md
+
+
 
 **Important:** Always reference the active context file first to understand what's currently being worked on and maintain session continuity.
 

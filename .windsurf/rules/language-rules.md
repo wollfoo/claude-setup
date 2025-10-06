@@ -1,12 +1,14 @@
 ---
 trigger: always_on
 ---
+
 ---
 type: capability_prompt
 scope: project
-priority: normal
+priority: high
 activation: always_on
 ---
+
 
 # LANGUAGE RULES
 - **MANDATORY**: Respond in Vietnamese.  
@@ -58,5 +60,3 @@ activation: always_on
 - Compliance: The content after the markers must include the required components (e.g., Goal/Plan/Progress/Summary — objectives/plan/progress/summary) in Vietnamese, unless the user explicitly requests otherwise.
 
 - Rationale: This exemption preserves the immutable ritual of [/rules/sovereign-agent-directive.md] while maintaining Vietnamese‑first consistency for the main content.
-
-

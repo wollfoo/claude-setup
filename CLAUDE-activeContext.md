@@ -56,6 +56,25 @@
 - Architecture decisions capture
 - Troubleshooting knowledge base
 
+## Quick Guide: Context Gathering
+
+Mục tiêu: Thu thập vừa đủ ngữ cảnh để hành động chính xác với chi phí thấp nhất, theo chuẩn Early Stop + Low Budget.
+
+### Tóm tắt phương pháp
+1. Bắt đầu rộng → thu hẹp nhanh; ưu tiên đọc đúng mục tiêu.
+2. Gọi công cụ theo trình tự (sequential), từng bước một.
+3. Đọc hit quan trọng nhất; tránh lặp lại truy vấn.
+4. Dừng sớm khi đã chỉ ra được tệp/ký hiệu/chỗ cần sửa.
+5. Nếu còn mơ hồ: dùng "escape hatch" — nêu giả định hợp lý và tiếp tục.
+
+### Ngân sách & tiêu chí dừng
+- Mặc định: ≤2 tool calls cho lượt khám phá nhỏ (vượt phải nêu lý do).
+- Dừng khi: đã xác định chính xác nội dung/tệp/ký hiệu; tín hiệu hội tụ ≈70% vào một khu vực.
+
+### Tham chiếu
+- Chi tiết chuẩn: `CONTEXT-GATHERING.md`
+- Chính sách toàn cục: `GLOBAL-DIRECTIVES.md` (preamble, evidence `file:line`, sequential theo mode)
+
 ## Next Steps
 
 1. Create CLAUDE-patterns.md với configuration patterns

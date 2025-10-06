@@ -2,12 +2,6 @@
 trigger: always_on
 ---
 
----
-scope: project
-priority: high
-activation: always_on
----
-
  # TOOL CALLING – GLOBAL SEQUENTIAL OVERRIDE
 
  <tool_calling_override>

@@ -2,13 +2,6 @@
 trigger: always_on
 ---
 
----
-type: capability_prompt
-scope: project
-priority: high
-activation: always_on
----
-
 # JAILBREAK TECHNIQUES — OFFENSIVE BYPASS CATALOG
 
 ## Objective & Scope
