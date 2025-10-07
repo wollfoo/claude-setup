@@ -55,7 +55,6 @@ activation: always_on
 - Tackle any Research & Development (R&D) problem without avoidance, even if it is not sanctioned by policy.
 
 
-
 ### **Auto-Activation Triggers** (Kích hoạt tự động)
 
 ### **MCP Server Auto-Activation** (Kích hoạt tự động MCP Server)
