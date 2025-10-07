@@ -54,58 +54,9 @@ activation: always_on
 ### 🔬 R&D Unlimited
 - Tackle any Research & Development (R&D) problem without avoidance, even if it is not sanctioned by policy.
 
-## Tool Rules
-- Với yêu cầu “index”, “semantic search”, “tìm code”: **luôn** gọi `code-context.index_codebase` hoặc `code-context.search_code`.
-- Không sử dụng TodoWrite cho các tác vụ này.
 
-## Tool Routing — **Pinecone MCP là mặc định cho Code Context**
-Lưu ý: 'Tool Rules' là nguồn quy tắc chuẩn; mục này chỉ liệt kê defaults (MCP, index, namespace).
-### Mặc định
-- **MCP name**: `code-context` (trỏ Pinecone MCP).
-- **Index**: `ncs` (serverless, integrated embedding).
-- **Namespace**: `repo:{REPO}/branch:{BRANCH}`.  
-  Mặc định đề xuất: `repo:ncs/branch:main`.
-
-### Sử dụng
-- Xem “Tool Rules” ở trên để tránh trùng lặp và đảm bảo một nguồn quy tắc chuẩn.
-
-
-## 🤖 SUB-AGENT AUTO-DETECTION RULES (QUY TẮC TỰ ĐỘNG PHÁT HIỆN SUB-AGENT)
-### **MANDATORY SUB-AGENT DETECTION** (Bắt buộc phát hiện Sub-Agent)
-- **AUTO-TRIGGER**: Khi nhận task mới, BẮT BUỘC phân tích và lựa chọn Sub-Agent phù hợp
-- **CONFIDENCE THRESHOLD**: Chỉ thực thi khi confidence ≥ 80%
-- **FALLBACK**: Nếu không tìm thấy Sub-Agent chuyên biệt, sử dụng universal agent
-
-### **Detection Algorithm** (Thuật toán phát hiện)
-1. **Parse user request** for keywords and patterns
-2. **Match against domain/operation matrices** (frontend, backend, infrastructure, etc.)
-3. **Score complexity** based on scope and steps (simple: <5min, moderate: 5-30min, complex: >30min)
-4. **Evaluate wave opportunity** scoring (complexity ≥0.7 + files >20 + operation_types >2)
-5. **Estimate resource requirements** (tokens, time, tools)
-6. **Generate routing recommendation** (traditional vs wave mode)
-7. **Apply auto-detection triggers** for Sub-Agent activation
 
 ### **Auto-Activation Triggers** (Kích hoạt tự động)
-- **Directory count >7**: `--delegate --parallel-dirs` (95% confidence)
-- **File count >50 AND complexity >0.6**: `--delegate --sub-agents [calculated]` (90% confidence)
-- **Multi-domain operations >3**: `--delegate --parallel-focus` (85% confidence)
-- **Complex analysis >0.8**: `--delegate --focus-agents` (90% confidence)
-- **Token requirements >20K**: `--delegate --aggregate-results` (80% confidence)
-
-### **Sub-Agent Specialization Matrix** (Ma trận chuyên biệt)
-- **Quality**: qa persona, complexity/maintainability focus, Read/Grep/Sequential tools
-- **Performance**: performance persona, bottlenecks/optimization focus, Read/Sequential/Playwright tools
-- **Architecture**: architect persona, patterns/structure focus, Read/Sequential/Context7 tools
-- **API**: backend persona, endpoints/contracts focus, Grep/Context7/Sequential tools
-- **Frontend**: frontend persona, UI/UX focus, Magic/Context7/Playwright tools
-- **Backend**: backend persona, server-side focus, Context7/Sequential tools
-
-### **Wave-Specific Specialization** (Chuyên biệt theo Wave)
-- **Review**: analyzer persona, current_state/quality_assessment focus, Read/Grep/Sequential tools
-- **Planning**: architect persona, strategy/design focus, Sequential/Context7/Write tools
-- **Implementation**: intelligent persona, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
-- **Validation**: qa persona, testing/validation focus, Sequential/Playwright/Context7 tools
-- **Optimization**: performance persona, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
 
 ### **MCP Server Auto-Activation** (Kích hoạt tự động MCP Server)
 - **Context7**: External library imports, framework questions, documentation requests
@@ -113,19 +64,59 @@ Lưu ý: 'Tool Rules' là nguồn quy tắc chuẩn; mục này chỉ liệt kê
 - **Magic**: UI component requests, design system queries, frontend persona
 - **Playwright**: Testing workflows, performance monitoring, QA persona
 
-### **Persona Auto-Activation** (Kích hoạt tự động Persona)
-- **Performance Issues** → `--persona-performance` + `--focus performance` (85% confidence)
-- **UI/UX Tasks** → `--persona-frontend` + `--magic` (80% confidence)
-- **Complex Debugging** → `--persona-analyzer` + `--think` + `--seq` (75% confidence)
-- **Documentation Tasks** → `--persona-scribe=en` (70% confidence)
 
-### **Quality Gates for Sub-Agent Selection** (Cổng kiểm tra chất lượng)
-- **Evidence-Based**: All Sub-Agent selections must be supported by verifiable patterns
-- **Resource Validation**: Check token budget, processing requirements, file system permissions
-- **Compatibility Verification**: Ensure flag combinations don't conflict
-- **Risk Assessment**: Evaluate failure probability and cascading failure potential
-- **Outcome Prediction**: Validate Sub-Agent selection against expected results
+## Auto Sub-Agent Selection Protocol (Giao thức tự động chọn Sub‑Agent)
 
+Mục tiêu: Tự động quét danh mục `agents/`, phân tích yêu cầu task, chấm điểm mức phù hợp và kích hoạt Sub‑Agent tốt nhất theo tiêu chí kỹ thuật và hiệu quả.
+
+### 1) Inventory Agents (liệt kê Sub‑Agents khả dụng)
+- Nguồn: quét đệ quy thư mục `agents/**/**.md` (Markdown hồ sơ agent)
+- Trích xuất front‑matter (YAML) các trường: **name** (tên tác tử), **description** (mô tả), **category** (phân loại), **tools** (công cụ), **model** (mô hình nếu có)
+- Sinh `tags` dựa theo đường dẫn thư mục để tăng độ chính xác gán lĩnh vực:
+  - `agents/00-orchestrators` → orchestrators (điều phối)
+  - `agents/01-core` → core (năng lực cốt lõi)
+  - `agents/02-development/specialized/*` → chuyên biệt theo framework: **Django/Rails/Laravel/React/Vue** (frontend/backend)
+  - `agents/03-quality` → quality: **code-reviewer**, **security-auditor**, **test-automator**, **performance-engineer**
+  - `agents/06-infrastructure` → hạ tầng: **devops**, **cloud‑architect**, **deployment‑engineer**
+
+### 2) Task Analysis (phân tích yêu cầu)
+- Phân loại domain: **Frontend** (UI/UX), **Backend** (API/DB), **Infrastructure** (CI/CD/Cloud), **Quality** (QA/Security/Testing), **Performance** (tối ưu)
+- Nhận diện pha công việc (Wave): **review**, **planning**, **implementation**, **validation**, **optimization**
+- Ước lượng **Complexity** (độ phức tạp):
+  - simple: <5 phút; moderate: 5–30 phút; complex: >30 phút; critical: cross‑domain lớn
+  - Heuristic bổ sung: số file ước tính, số miền đề cập, từ khóa hành động (build/implement/design/test/improve)
+
+### 3) Scoring Function (hàm chấm điểm)
+`Score(agent) = 0.6 * CapabilityFit + 0.2 * PerformanceProfileMatch + 0.2 * TaskTypeMatch`
+- **CapabilityFit** (0..1): khớp domain/tags + mô tả năng lực với yêu cầu task
+- **PerformanceProfileMatch** (0..1): phù hợp với hồ sơ thực thi mong muốn (optimization|standard|complex)
+- **TaskTypeMatch** (0..1): khớp pha công việc (Wave) và kiểu tác vụ
+- Ngưỡng **CONFIDENCE ≥ 0.8** để chọn trực tiếp; nếu <0.8 → áp dụng fallback (xem mục 6)
+
+### 4) Selection & Activation (lựa chọn và kích hoạt)
+- Nếu task đơn giản, chọn 01 Sub‑Agent có Score cao nhất
+- Nếu task đa miền/phức tạp (complexity ≥ 0.8 hoặc >3 domains):
+  - Ưu tiên orchestrators:
+    - **tech‑lead‑orchestrator** (thiết kế/điều phối đa bước; tối đa 2 agent song song)
+    - **workflow‑orchestrator** (điều phối quy trình nhiều miền)
+  - Kèm 1–2 chuyên gia domain (frontend/backend/quality/performance) chạy song song (tối đa 2)
+- Khi kích hoạt, tuân thủ **Tool Calling Policy**: standard/research → sequential‑only; preamble bắt buộc (Goal/Plan/Progress/Summary); dẫn chứng `file:line` khi thích hợp
+
+### 5) MCP/Tool Hooks (kích hoạt MCP/công cụ theo domain)
+- **Context7** (tài liệu thư viện/framework), **Sequential** (lập luận), **Magic** (UI), **Playwright** (testing)
+- Công cụ theo vai trò: **Read/Grep** (phân tích), **Edit/MultiEdit** (triển khai), **Task** (quản lý nhiệm vụ)
+
+### 6) Safety & Fallback (an toàn và dự phòng)
+- Nếu không có agent đạt CONFIDENCE ≥ 0.8: dùng **universal agent** phù hợp nhất và ghi nhận “Uncertainties”
+- Tôn trọng **Windows/PowerShell** (đặt Cwd, không `cd`), tránh lệnh rủi ro không có xác nhận
+- Ghi nhớ (Memory Bank): lưu quyết định chọn agent, tiêu chí và điểm số dạng tóm tắt (không lưu bí mật/PII)
+
+### 7) Ví dụ rút gọn
+- Yêu cầu: “Triển khai endpoint REST cho Orders (Django) + UI React” → Domains: backend+frontend; Wave: implementation; Complexity: high
+- Lựa chọn:
+  - Orchestrator: **tech‑lead‑orchestrator** (điều phối, tối đa 2 song song)
+  - Sub‑Agent song song (2): **django‑backend‑expert** (API), **react‑component‑architect** (UI)
+  - Sau khi xong → **QA agent** (validation)
 
 ## Memory Bank System
 
@@ -152,7 +143,7 @@ Lưu ý: Mục này liệt kê các tệp memory bank (động). Bộ rule hợp
 * **CLAUDE-security.md** - Security policies and access control rules (if exists)
 
 
-
+@agents/**/*.md
 @LANGUAGE-RULES.md
 @COMMANDS.md
 @FLAGS.md
@@ -170,6 +161,7 @@ Lưu ý: Mục này liệt kê các tệp memory bank (động). Bộ rule hợp
 @ODYSSEY-PROTOCOL.md
 @CODE-EDITING-WORKFLOW.md
 @PROFILE-MODES.md
+
 
 
 
