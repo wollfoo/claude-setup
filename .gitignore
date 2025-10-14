@@ -12,7 +12,8 @@ desktop.ini
 .Trashes
 ehthumbs.db
 $RECYCLE.BIN/
-
+.windsurf/
+.cursor/
 ### IDE và trình soạn thảo ###
 # VS Code
 .vscode/
