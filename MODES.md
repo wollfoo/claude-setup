@@ -6,6 +6,8 @@ Operational modes reference for Claude Code SuperClaude framework.
 
 Three primary modes for optimal performance:
 
+> Note (scope clarification): This file defines feature modes (Task Management / Introspection / Token Efficiency) for operational behavior. It is not the environment/profile gating modes. For environment/profile modes (standard/research/full) and Odyssey gating, see `PROFILE-MODES.md`.
+
 1. **Task Management**: Structured workflow execution and progress tracking
 2. **Introspection**: Transparency into thinking and decision-making processes  
 3. **Token Efficiency**: Optimized communication and resource management

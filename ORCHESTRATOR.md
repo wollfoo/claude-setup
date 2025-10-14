@@ -2,6 +2,14 @@
 
 Intelligent routing system for Claude Code SuperClaude framework.
 
+## Default Auto‑Detection Policy
+
+- Luôn chạy Sub‑Agent Auto‑Detection cho mọi yêu cầu người dùng mới (không yêu cầu tiền tố cố định).
+- Nếu best‑match có confidence ≥ `orchestrator_config.confidence_threshold` → kích hoạt Sub‑Agent đó; ngược lại dùng universal agent và ghi chú “Uncertainties”.
+- Trình bày tóm tắt lựa chọn: agent, confidence, lý do (pattern hits/domain/operation types), và các cờ chính.
+- Tôn trọng mode/markers & tool policy từ SSOT: `PROFILE-MODES.md`, `ODYSSEY-PROTOCOL.md`, `GLOBAL-DIRECTIVES.md`.
+- Áp dụng Quality Gates trước khi đánh dấu hoàn tất (xem Validation section).
+
 ## 🧠 Detection Engine
 
 Analyzes requests to understand intent, complexity, and requirements.
@@ -568,6 +576,7 @@ Threshold-based resource management follows the unified Resource Management Thre
 ### Orchestrator Settings
 ```yaml
 orchestrator_config:
+  auto_detect_on_new_request: true
   # Performance
   enable_caching: true
   cache_ttl: 3600

@@ -1,6 +1,8 @@
 
 ## 🤖 SUB-AGENT AUTO-DETECTION RULES (QUY TẮC TỰ ĐỘNG PHÁT HIỆN SUB-AGENT)
 
+> SSOT note: This file provides a high-level overview of sub‑agent selection rules. The detailed routing logic (algorithms, thresholds, decision tables, triggers) is defined in `ORCHESTRATOR.md`. Do not duplicate execution details here. In case of conflict, follow `RULE-PRECEDENCE.md`.
+
 ### **MANDATORY SUB-AGENT DETECTION**
 - **AUTO-TRIGGER**: Khi nhận task mới, BẮT BUỘC phân tích và lựa chọn Sub-Agent phù hợp
 - **CONFIDENCE THRESHOLD**: Chỉ thực thi khi confidence ≥ 80%

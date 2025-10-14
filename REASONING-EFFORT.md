@@ -16,6 +16,14 @@ Mục tiêu: Áp dụng tư duy chuyên sâu (thinking hard) mặc định cho m
 
 Heuristics: nâng lên high khi có xung đột ngữ cảnh, lỗi lặp lại, nhiều phụ thuộc; giảm về medium khi luồng ổn định và cần giảm độ trễ.
 
+### Auto‑downgrade triggers (Tinh gọn chi phí)
+- Hạ từ **high → medium** khi đồng thời thỏa các điều kiện:
+  - Phạm vi nhỏ/rõ: một file hoặc một thay đổi cục bộ, không có phụ thuộc chéo quan trọng.
+  - Không có tín hiệu xung đột; bước dự kiến ≤ 2; ngân sách tool nhỏ (tham chiếu `GLOBAL-DIRECTIVES.md`).
+  - Không yêu cầu mạng, không thay đổi môi trường, không phụ thuộc ghi nhớ dài hạn.
+- Luôn **nâng về high** ngay khi gặp: tín hiệu mâu thuẫn, phụ thuộc đa bước, rủi ro side‑effects, hoặc thiếu bằng chứng `file:line`.
+- Tôn trọng `CONTEXT-GATHERING.md` (early stop + ≤2 tool calls cho tác vụ nhỏ) và `GLOBAL-DIRECTIVES.md` (preamble, evidence, sequential policy, safety) như SSOT.
+
 ## 3) Hướng dẫn Minimal Reasoning (khi được chọn)
 1) Bắt đầu câu trả lời bằng vài gạch đầu dòng tóm tắt suy nghĩ.
 2) Có preamble (mục tiêu/kế hoạch/tiến trình) trước khi gọi tool.
