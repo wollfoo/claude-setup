@@ -13,7 +13,7 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 
 **Selection Process**: Task Analysis → Server Capability Match → Performance Check → Load Assessment → Final Selection
 
-## Context7 Integration (Documentation & Research)
+## context7 Integration (Documentation & Research)
 
 **Purpose**: Official library documentation, code examples, best practices, localization standards
 
@@ -40,7 +40,7 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 - Version mismatch → Find compatible version → Suggest upgrade path
 - Server unavailable → Activate backup Context7 instances → Graceful degradation
 
-## Sequential Integration (Complex Analysis & Thinking)
+## sequential Integration (Complex Analysis & Thinking)
 
 **Purpose**: Multi-step problem solving, architectural analysis, systematic debugging
 
@@ -74,7 +74,7 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 - Scribe Persona: Structured documentation workflows, multilingual content organization
 - Loop Command: Iterative improvement analysis, progressive refinement planning
 
-## Magic Integration (UI Components & Design)
+## magic Integration (UI Components & Design)
 
 **Purpose**: Modern UI component generation, design system integration, responsive design
 
@@ -110,7 +110,7 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 - Angular: Component architecture, TypeScript, reactive forms, services
 - Vanilla: Web Components, modern JavaScript, CSS custom properties
 
-## Playwright Integration (Browser Automation & Testing)
+## playwright Integration (Browser Automation & Testing)
 
 **Purpose**: Cross-browser E2E testing, performance monitoring, automation, visual testing
 
@@ -150,40 +150,40 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 ## MCP Server Use Cases by Command Category
 
 **Development Commands**:
-- Context7: Framework patterns, library documentation
-- Magic: UI component generation
-- Sequential: Complex setup workflows
+- context7: Framework patterns, library documentation
+- magic: UI component generation
+- sequential: Complex setup workflows
 
 **Analysis Commands**:
-- Context7: Best practices, patterns
-- Sequential: Deep analysis, systematic review
-- Playwright: Issue reproduction, visual testing
+- context7: Best practices, patterns
+- sequential: Deep analysis, systematic review
+- playwright: Issue reproduction, visual testing
 
 **Quality Commands**:
-- Context7: Security patterns, improvement patterns
-- Sequential: Code analysis, cleanup strategies
+- context7: Security patterns, improvement patterns
+- sequential: Code analysis, cleanup strategies
 
 **Testing Commands**:
-- Sequential: Test strategy development
-- Playwright: E2E test execution, visual regression
+- sequential: Test strategy development
+- playwright: E2E test execution, visual regression
 
 **Documentation Commands**:
-- Context7: Documentation patterns, style guides, localization standards
-- Sequential: Content analysis, structured writing, multilingual documentation workflows
+- context7: Documentation patterns, style guides, localization standards
+- sequential: Content analysis, structured writing, multilingual documentation workflows
 - Scribe Persona: Professional writing with cultural adaptation and language-specific conventions
 
 **Planning Commands**:
-- Context7: Benchmarks and patterns
-- Sequential: Complex planning and estimation
+- context7: Benchmarks and patterns
+- sequential: Complex planning and estimation
 
 **Deployment Commands**:
-- Sequential: Deployment planning
-- Playwright: Deployment validation
+- sequential: Deployment planning
+- playwright: Deployment validation
 
 **Meta Commands**:
-- Sequential: Search intelligence, task orchestration, iterative improvement analysis
+- sequential: Search intelligence, task orchestration, iterative improvement analysis
 - All MCP: Comprehensive analysis and orchestration
-- Loop Command: Iterative workflows with Sequential (primary) and Context7 (patterns)
+- Loop Command: Iterative workflows with sequential (primary) and context7 (patterns)
 
 ## Server Orchestration Patterns
 
@@ -195,18 +195,18 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 - Failover Management: Automatic failover to backup servers during outages
 
 **Caching Strategies**:
-- Context7 Cache: Documentation lookups with version-aware caching
-- Sequential Cache: Analysis results with pattern matching
-- Magic Cache: Component patterns with design system versioning
-- Playwright Cache: Test results and screenshots with environment-specific caching
+- context7 Cache: Documentation lookups with version-aware caching
+- sequential Cache: Analysis results with pattern matching
+- magic Cache: Component patterns with design system versioning
+- playwright Cache: Test results and screenshots with environment-specific caching
 - Cross-Server Cache: Shared cache for multi-server operations
 - Loop Optimization: Cache iterative analysis results, reuse improvement patterns
 
 **Error Handling and Recovery**:
-- Context7 unavailable → WebSearch for documentation → Manual implementation
-- Sequential timeout → Use native Claude Code analysis → Note limitations
-- Magic failure → Generate basic component → Suggest manual enhancement
-- Playwright connection lost → Suggest manual testing → Provide test cases
+- context7 unavailable → WebSearch for documentation → Manual implementation
+- sequential timeout → Use native Claude Code analysis → Note limitations
+- magic failure → Generate basic component → Suggest manual enhancement
+- playwright connection lost → Suggest manual testing → Provide test cases
 
 **Recovery Strategies**:
 - Exponential Backoff: Automatic retry with exponential backoff and jitter
@@ -220,6 +220,6 @@ MCP (Model Context Protocol) server integration and orchestration system for Cla
 - Progressive Enhancement: Progressively enhance with additional servers
 - Result Combination: Combine MCP results for comprehensive solutions
 - Graceful Fallback: Fallback gracefully when servers unavailable
-- Loop Integration: Sequential for iterative analysis, Context7 for improvement patterns
+- Loop Integration: sequential for iterative analysis, context7 for improvement patterns
 - Dependency Orchestration: Manage inter-server dependencies and data flow
 

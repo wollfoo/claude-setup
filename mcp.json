@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "jean-memory": {
+      "url": "https://jean-memory-api-virginia.onrender.com/mcp/v2/cursor/1d2eedad-40c4-451d-8b3e-2b1b0a4fd090",
+      "headers": {}
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "supabase-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "sbp_42ed53d653dfdaf306aa562e0ed8d9c93542751a"
+      ],
+      "env": {},
+      "disabled": false
+    },
+    "context7": {
+      "serverUrl": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-4255340b-d2e1-4d6a-b8a8-c8b843a97255"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "BSAPiV5Yyv1xw1KADN60u33hX14ObWf"
+      },
+      "disabled": false
+    },
+    "mcp-playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "env": {},
+      "disabled": false
+    }
+  }
+}

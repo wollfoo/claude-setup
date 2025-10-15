@@ -1,7 +1,7 @@
 
 ## 🤖 SUB-AGENT AUTO-DETECTION RULES (QUY TẮC TỰ ĐỘNG PHÁT HIỆN SUB-AGENT)
 
-> SSOT note: This file provides a high-level overview of sub‑agent selection rules. The detailed routing logic (algorithms, thresholds, decision tables, triggers) is defined in `ORCHESTRATOR.md`. Do not duplicate execution details here. In case of conflict, follow `RULE-PRECEDENCE.md`.
+> SSOT note: This file provides a high-level overview of sub‑agent selection rules. The detailed routing logic (algorithms, thresholds, decision tables, triggers) is defined in `INTELLIGENCE/` directory (detection-engine.md, routing-intelligence.md, task-delegation.md). Do not duplicate execution details here. In case of conflict, follow `RULE-PRECEDENCE.md`.
 
 ### **MANDATORY SUB-AGENT DETECTION**
 - **AUTO-TRIGGER**: Khi nhận task mới, BẮT BUỘC phân tích và lựa chọn Sub-Agent phù hợp
@@ -9,53 +9,26 @@
 - **FALLBACK**: Nếu không tìm thấy Sub-Agent chuyên biệt, sử dụng universal agent
 
 ### **Detection Algorithm (Thuật toán phát hiện)**
-1. **Parse user request** for keywords and patterns
-2. **Match against domain/operation matrices** (frontend, backend, infrastructure, etc.)
-3. **Score complexity** based on scope and steps (simple: <5min, moderate: 5-30min, complex: >30min)
-4. **Evaluate wave opportunity** scoring (complexity ≥0.7 + files >20 + operation_types >2)
-5. **Estimate resource requirements** (tokens, time, tools)
-6. **Generate routing recommendation** (traditional vs wave mode)
-7. **Apply auto-detection triggers** for Sub-Agent activation
+7-step process: Parse → Match domains → Score complexity → Evaluate waves → Estimate resources → Route → Activate
+
+**Details**: See `INTELLIGENCE/detection-engine.md` for complete 8-step Intent Extraction Algorithm and multi-factor confidence scoring.
 
 ### **Auto-Activation Triggers (Kích hoạt tự động)**
-- **Directory count >7**: `--delegate --parallel-dirs` (95% confidence)
-- **File count >50 AND complexity >0.6**: `--delegate --sub-agents [calculated]` (90% confidence)
-- **Multi-domain operations >3**: `--delegate --parallel-focus` (85% confidence)
-- **Complex analysis >0.8**: `--delegate --focus-agents` (90% confidence)
-- **Token requirements >20K**: `--delegate --aggregate-results` (80% confidence)
+- Directory >7 / File >50 / Multi-domain >3 / Complex >0.8 / Token >20K → Auto-delegate
 
-### **Sub-Agent Specialization Matrix (Ma trận chuyên biệt)**
-- **Quality**: test-automator + code-reviewer, complexity/maintainability focus, Read/Grep/Sequential tools
-- **Performance**: performance-engineer + performance-optimizer, bottlenecks/optimization focus, Read/Sequential/Playwright tools
-- **Architecture**: backend-architect + codebase-research-analyst, patterns/structure focus, Read/Sequential/Context7 tools
-- **API**: backend-developer + rails-api-developer, endpoints/contracts focus, Grep/Context7/Sequential tools
-- **Frontend**: frontend-developer + react-component-architect, UI/UX focus, Magic/Context7/Playwright tools
-- **Backend**: backend-developer + rails-backend-expert, server-side focus, Context7/Sequential tools
+**Details**: See `INTELLIGENCE/task-delegation.md` for complete trigger matrix with confidence scores.
 
-### **Wave-Specific Specialization (Chuyên biệt theo Wave)**
-- **Review**: codebase-research-analyst + code-reviewer, current_state/quality_assessment focus, Read/Grep/Sequential tools
-- **Planning**: backend-architect + planning-strategist, strategy/design focus, Sequential/Context7/Write tools
-- **Implementation**: software-engineer + general-purpose, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
-- **Validation**: test-automator + security-auditor, testing/validation focus, Sequential/Playwright/Context7 tools
-- **Optimization**: performance-engineer + database-optimizer, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
+### **Specialization Matrix (Ma trận chuyên biệt)**
+**Core Specialists**: Quality, Performance, Architecture, API, Frontend, Backend
+**Wave Specialists**: Review, Planning, Implementation, Validation, Optimization
 
-### **MCP Server Auto-Activation (Kích hoạt tự động MCP Server)**
-- **Context7**: External library imports, framework questions, documentation requests
-- **Sequential**: Complex debugging, system design, any --think flags
-- **Magic**: UI component requests, design system queries
-- **Playwright**: Testing workflows, performance monitoring
+**Details**: See `INTELLIGENCE/task-delegation.md` for 12+ detailed specialist specifications.
 
-### **Agent Auto-Activation (Kích hoạt tự động Agent)**
-- **Performance Issues** → `performance-engineer` + `--focus performance` (85% confidence)
-- **UI/UX Tasks** → `frontend-developer` + `react-component-architect` + `--magic` (80% confidence)
-- **Complex Debugging** → `debugger` + `debug-specialist` + `--think` + `--seq` (75% confidence)
-- **Documentation Tasks** → `technical-documentation-specialist` + `api-documenter` (70% confidence)
+### **Agent & MCP Auto-Activation**
+**Agents**: Performance (85%), UI/UX (80%), Debugging (75%), Documentation (70%)
+**MCP**: Context7, Sequential, Magic, Playwright
 
-### **Quality Gates for Sub-Agent Selection (Cổng kiểm tra chất lượng)**
-- **Resource Validation**: Check token budget, processing requirements, file system permissions
-- **Compatibility Verification**: Ensure flag combinations don't conflict
-- **Risk Assessment**: Evaluate failure probability and cascading failure potential
-- **Outcome Prediction**: Validate Sub-Agent selection against expected results
+**Details**: See `INTELLIGENCE/routing-intelligence.md` for complete activation patterns and flag precedence.
 
 ### Task Management Rules
 - TodoRead() → TodoWrite(3+ tasks) → Execute → Track progress
@@ -83,7 +56,7 @@ Validate before execution
 Check framework compatibility
 Auto-activate agents based on domain and complexity
 Preserve context across operations
-Use quality gates (see ORCHESTRATOR.md)
+Use quality gates (see INTELLIGENCE/routing-intelligence.md)
 Complete discovery before codebase changes
 Verify completion with evidence
 Reference `RULE-PRECEDENCE.md` to resolve conflicts systematically

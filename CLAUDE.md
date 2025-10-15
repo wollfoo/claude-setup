@@ -3,10 +3,10 @@
 ---yaml
 # Danh sách MCP mặc định luôn được kích hoạt cho mọi task
 defaultMCPs:
-  - sequentialThinking
+  - sequential-thinking
   - antml
-  - code-context       
-  - memory            
+  - code-context
+  - memory
 ---
 
 ## AI Guidance
@@ -33,7 +33,7 @@ defaultMCPs:
 
 * Ignore GEMINI.md and GEMINI-*.md files
 * After receiving tool results, carefully reflect on their quality and determine optimal next steps before proceeding. Use your thinking to plan and iterate based on this new information, and then take the best next action.
-* New task auto‑delegation: Với **mọi yêu cầu mới**, tự động chạy Sub‑Agent Auto‑Detection theo `ORCHESTRATOR.md` (không yêu cầu tiền tố cố định). Trình bày lựa chọn (agent + confidence + lý do) và dùng universal agent khi dưới ngưỡng.
+* New task auto‑delegation: Với **mọi yêu cầu mới**, tự động chạy Sub‑Agent Auto‑Detection theo `INTELLIGENCE/` (detection-engine.md, routing-intelligence.md, task-delegation.md). Trình bày lựa chọn (agent + confidence + lý do) và dùng universal agent khi dưới ngưỡng.
 * Tool policy & modes: Tham chiếu SSOT — `GLOBAL-DIRECTIVES.md` (preamble, evidence, sequential policy, safety), `PROFILE-MODES.md` (mode selection), `ODYSSEY-PROTOCOL.md` (markers & mode gating).
 * Before you finish, please verify your solution
 * Do what has been asked; nothing more, nothing less.
@@ -56,7 +56,7 @@ defaultMCPs:
 
 ## Auto Sub-Agent Selection Protocol (Giao thức tự động chọn Sub‑Agent)
 
-- SSOT (logic chi tiết, ngưỡng, bảng quyết định, triggers): `ORCHESTRATOR.md`.
+- SSOT (logic chi tiết, ngưỡng, bảng quyết định, triggers): `INTELLIGENCE/detection-engine.md`, `INTELLIGENCE/routing-intelligence.md`, `INTELLIGENCE/task-delegation.md`.
 - Tổng quan & quy tắc cấp cao: `RULES.md`.
 
 ## Memory Bank System
@@ -92,7 +92,9 @@ Lưu ý: Mục này liệt kê các tệp memory bank (động). Bộ rule hợp
 @RULES.md
 @MCP.md
 @ORCHESTRATOR.md
-@CLAUDE-research.md
+@intelligence/detection-engine.md
+@intelligence/routing-intelligence.md
+@intelligence/task-delegation.md
 @REASONING-EFFORT.md
 @GLOBAL-DIRECTIVES.md
 @CONTEXT-GATHERING.md

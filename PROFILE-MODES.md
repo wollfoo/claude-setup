@@ -2,7 +2,7 @@
 ## (Bilingual) Operating Modes Coordination
 
 - Mục tiêu (Goal): Chuẩn hóa chế độ vận hành cho Claude Code theo ngữ cảnh sử dụng, giữ an toàn trong production và linh hoạt trong R&D.
-- Scope: Áp dụng cho toàn bộ prompt system và routing trong `CLAUDE.md`, `ORCHESTRATOR.md`, `RULES.md`.
+- Scope: Áp dụng cho toàn bộ prompt system và routing trong `CLAUDE.md`, `INTELLIGENCE/` (detection-engine.md, routing-intelligence.md, task-delegation.md), `RULES.md`.
 
 ---
 
@@ -49,7 +49,7 @@ mode_selection:
 
 ---
 
-## Tích hợp với ORCHESTRATOR
+## Tích hợp với INTELLIGENCE Routing System
 - standard: routing bảo thủ, kiểm chứng đầy đủ
 - research: routing cân bằng, xác minh theo vòng lặp
 - full-de-restriction: routing quyết liệt, hậu kiểm tường minh (Action Ledger)
