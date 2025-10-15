@@ -276,20 +276,20 @@ Usage guidance:
 
 | Pattern | Complexity | Domain | Auto-Activates | Confidence |
 |---------|------------|---------|----------------|------------|
-| "analyze architecture" | complex | infrastructure | architect persona, --ultrathink, Sequential | 95% |
-| "create component" | simple | frontend | frontend persona, Magic, --uc | 90% |
-| "implement feature" | moderate | any | domain-specific persona, Context7, Sequential | 88% |
-| "implement API" | moderate | backend | backend persona, --seq, Context7 | 92% |
-| "implement UI component" | simple | frontend | frontend persona, Magic, --c7 | 94% |
-| "fix bug" | moderate | any | analyzer persona, --think, Sequential | 85% |
-| "optimize performance" | complex | backend | performance persona, --think-hard, Playwright | 90% |
-| "write documentation" | moderate | documentation | scribe persona, --persona-scribe=en, Context7 | 95% |
-| "improve iteratively" | moderate | iterative | intelligent persona, --seq, loop creation | 90% |
-| "analyze large codebase" | complex | any | --delegate --parallel-dirs, domain specialists | 95% |
-| "comprehensive audit" | complex | multi | --multi-agent --parallel-focus, specialized agents | 95% |
-| "improve large system" | complex | any | --wave-mode --adaptive-waves | 90% |
-| "modernize legacy system" | complex | legacy | --wave-mode --enterprise-waves --wave-checkpoint | 92% |
-| "comprehensive code review" | complex | quality | --wave-mode --wave-validation --systematic-waves | 94% |
+| "analyze architecture" | complex | infrastructure | codebase-research-analyst + backend-architect, --ultrathink, Sequential | 95% |
+| "create component" | simple | frontend | frontend-developer, Magic, --uc | 90% |
+| "implement feature" | moderate | any | domain-specific agent (backend/frontend/universal), Context7, Sequential | 88% |
+| "implement API" | moderate | backend | backend-developer, --seq, Context7 | 92% |
+| "implement UI component" | simple | frontend | react-component-architect, Magic, --c7 | 94% |
+| "fix bug" | moderate | any | debugger + debug-specialist, --think, Sequential | 85% |
+| "optimize performance" | complex | backend | performance-engineer, --think-hard, Playwright | 90% |
+| "write documentation" | moderate | documentation | technical-documentation-specialist, Context7 | 95% |
+| "improve iteratively" | moderate | iterative | code-refactorer + general-purpose, --seq, loop creation | 90% |
+| "analyze large codebase" | complex | any | --delegate --parallel-dirs, codebase-research-analyst | 95% |
+| "comprehensive audit" | complex | multi | --multi-agent --parallel-focus, security-auditor + test-automator | 95% |
+| "improve large system" | complex | any | --wave-mode --adaptive-waves, code-refactorer + performance-optimizer | 90% |
+| "modernize legacy system" | complex | legacy | --wave-mode --enterprise-waves --wave-checkpoint, legacy-modernizer | 92% |
+| "comprehensive code review" | complex | quality | --wave-mode --wave-validation --systematic-waves, code-reviewer | 94% |
 
 ### Decision Trees
 
@@ -389,55 +389,57 @@ token_optimization:
 | Large-scale refactoring | high | --wave-mode --systematic-waves | 75% |
 
 **Sub-Agent Specialization Matrix**:
-- **Quality**: qa persona, complexity/maintainability focus, Read/Grep/Sequential tools
-- **Performance**: performance persona, bottlenecks/optimization focus, Read/Sequential/Playwright tools
-- **Architecture**: architect persona, patterns/structure focus, Read/Sequential/Context7 tools
-- **API**: backend persona, endpoints/contracts focus, Grep/Context7/Sequential tools
+- **Quality**: test-automator + code-reviewer, complexity/maintainability focus, Read/Grep/Sequential tools
+- **Performance**: performance-engineer + performance-optimizer, bottlenecks/optimization focus, Read/Sequential/Playwright tools
+- **Architecture**: backend-architect + codebase-research-analyst, patterns/structure focus, Read/Sequential/Context7 tools
+- **API**: backend-developer + rails-api-developer, endpoints/contracts focus, Grep/Context7/Sequential tools
+- **Frontend**: frontend-developer + react-component-architect, UI/UX focus, Magic/Context7/Playwright tools
+- **Backend**: backend-developer + rails-backend-expert, server-side focus, Context7/Sequential tools
 
 **Wave-Specific Specialization Matrix**:
-- **Review**: analyzer persona, current_state/quality_assessment focus, Read/Grep/Sequential tools
-- **Planning**: architect persona, strategy/design focus, Sequential/Context7/Write tools
-- **Implementation**: intelligent persona, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
-- **Validation**: qa persona, testing/validation focus, Sequential/Playwright/Context7 tools
-- **Optimization**: performance persona, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
+- **Review**: codebase-research-analyst + code-reviewer, current_state/quality_assessment focus, Read/Grep/Sequential tools
+- **Planning**: backend-architect + planning-strategist, strategy/design focus, Sequential/Context7/Write tools
+- **Implementation**: software-engineer + general-purpose, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
+- **Validation**: test-automator + security-auditor, testing/validation focus, Sequential/Playwright/Context7 tools
+- **Optimization**: performance-engineer + database-optimizer, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
 
-#### Persona Auto-Activation System
+#### Agent Auto-Selection System
 
-**Multi-Factor Activation Scoring**:
+**Multi-Factor Selection Scoring**:
 - **Keyword Matching**: Base score from domain-specific terms (30%)
 - **Context Analysis**: Project phase, urgency, complexity assessment (40%)
 - **User History**: Past preferences and successful outcomes (20%)
 - **Performance Metrics**: Current system state and bottlenecks (10%)
 
-**Intelligent Activation Rules**:
+**Intelligent Selection Rules**:
 
-**Performance Issues** → `--persona-performance` + `--focus performance`
+**Performance Issues** → `performance-engineer` + `--focus performance`
 - **Trigger Conditions**: Response time >500ms, error rate >1%, high resource usage
 - **Confidence Threshold**: 85% for automatic activation
 
-**UI/UX Tasks** → `--persona-frontend` + `--magic`
+**UI/UX Tasks** → `frontend-developer` + `react-component-architect` + `--magic`
 - **Trigger Conditions**: Component creation, responsive design, accessibility
 - **Confidence Threshold**: 80% for automatic activation
 
-**Complex Debugging** → `--persona-analyzer` + `--think` + `--seq`
+**Complex Debugging** → `debugger` + `debug-specialist` + `--think` + `--seq`
 - **Trigger Conditions**: Multi-component failures, root cause investigation
 - **Confidence Threshold**: 75% for automatic activation
 
-**Documentation Tasks** → `--persona-scribe=en`
+**Documentation Tasks** → `technical-documentation-specialist` + `api-documenter`
 - **Trigger Conditions**: README, wiki, guides, commit messages, API docs
 - **Confidence Threshold**: 70% for automatic activation
 
 #### Flag Auto-Activation Patterns
 
 **Context-Based Auto-Activation**:
-- Performance issues → --persona-performance + --focus performance + --think
-- UI/UX tasks → --persona-frontend + --magic + --c7
-- Complex debugging → --think + --seq + --persona-analyzer
-- Large codebase → --uc when context >75% + --delegate auto
-- Testing operations → --persona-qa + --play + --validate
-- DevOps operations → --persona-devops + --safe-mode + --validate
-- Refactoring → --persona-refactorer + --wave-strategy systematic + --validate
-- Iterative improvement → --loop for polish, refine, enhance keywords
+- Performance issues → performance-engineer + performance-optimizer + --focus performance + --think
+- UI/UX tasks → frontend-developer + react-component-architect + --magic + --c7
+- Complex debugging → debugger + codebase-research-analyst + --think + --seq
+- Large codebase → --uc when context >75% + --delegate auto + codebase-research-analyst
+- Testing operations → test-automator + security-auditor + --play + --validate
+- DevOps operations → devops-infrastructure-specialist + deployment-engineer + --safe-mode + --validate
+- Refactoring → code-refactorer + performance-optimizer + --wave-strategy systematic + --validate
+- Iterative improvement → code-refactorer + general-purpose + --loop for polish, refine, enhance keywords
 
 **Wave Auto-Activation**:
 - Complex multi-domain → --wave-mode auto when complexity >0.8 AND files >20 AND types >2
@@ -464,7 +466,7 @@ token_optimization:
 3. Thinking depth: --ultrathink > --think-hard > --think
 4. --no-mcp overrides all individual MCP flags
 5. Scope: system > project > module > file
-6. Last specified persona takes precedence
+6. Last specified agent takes precedence when multiple agents selected
 7. Wave mode: --wave-mode off > --wave-mode force > --wave-mode auto
 8. Sub-Agent delegation: explicit --delegate > auto-detection
 9. Loop mode: explicit --loop > auto-detection based on refinement keywords
@@ -500,7 +502,7 @@ wave_integration:
 ```yaml
 completion_requirements:
   validation: "all 8 steps pass, evidence provided, metrics documented"
-  ai_integration: "MCP coordination, persona integration, tool orchestration, ≥90% context retention"
+  ai_integration: "MCP coordination, agent integration, tool orchestration, ≥90% context retention"
   performance: "response time targets, resource limits, success thresholds, token efficiency"
   quality: "code quality standards, performance assessment, integration testing"
 
@@ -547,8 +549,16 @@ Smart MCP server selection and orchestration.
 
 **Core Coordination Logic**: Multi-server operations, fallback chains, resource optimization
 
-### Persona Integration
-**Reference**: See PERSONAS.md for detailed persona specifications and MCP server preferences.
+### Agent Integration
+**Reference**: See agents/ directory for detailed agent specifications and capabilities.
+
+**Agent Selection Guide**:
+- **Analysis**: codebase-research-analyst, debugger, code-reviewer
+- **Development**: backend-developer, frontend-developer, software-engineer
+- **Quality**: test-automator, security-auditor, performance-engineer
+- **Documentation**: technical-documentation-specialist, api-documenter
+- **Infrastructure**: devops-infrastructure-specialist, deployment-engineer, cloud-architect
+- **Specialized**: react-component-architect, rails-backend-expert, blockchain-developer
 
 ## 🚨 Emergency Protocols
 

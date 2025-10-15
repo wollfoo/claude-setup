@@ -91,7 +91,6 @@ Lưu ý: Mục này liệt kê các tệp memory bank (động). Bộ rule hợp
 @PRINCIPLES.md
 @RULES.md
 @MCP.md
-@PERSONAS.md
 @ORCHESTRATOR.md
 @CLAUDE-research.md
 @REASONING-EFFORT.md

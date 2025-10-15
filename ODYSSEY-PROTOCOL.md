@@ -45,7 +45,3 @@ Tham chiếu: `PROFILE-MODES.md`, `GLOBAL-DIRECTIVES.md` (Action Ledger, an toà
 
 ---
 
-## Usage Notes (hướng dẫn sử dụng)
-- Chỉ áp dụng Odyssey trong bối cảnh phù hợp với chế độ đã chọn.
-- Khi bật Odyssey, vẫn tuân thủ `GLOBAL-DIRECTIVES.md` (preamble, evidence `file:line`, an toàn lệnh).
-- Không ép dùng Odyssey cho nội dung cấu hình/hạ tầng nơi tính súc tích là ưu tiên.

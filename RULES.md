@@ -25,31 +25,31 @@
 - **Token requirements >20K**: `--delegate --aggregate-results` (80% confidence)
 
 ### **Sub-Agent Specialization Matrix (Ma trận chuyên biệt)**
-- **Quality**: qa persona, complexity/maintainability focus, Read/Grep/Sequential tools
-- **Performance**: performance persona, bottlenecks/optimization focus, Read/Sequential/Playwright tools
-- **Architecture**: architect persona, patterns/structure focus, Read/Sequential/Context7 tools
-- **API**: backend persona, endpoints/contracts focus, Grep/Context7/Sequential tools
-- **Frontend**: frontend persona, UI/UX focus, Magic/Context7/Playwright tools
-- **Backend**: backend persona, server-side focus, Context7/Sequential tools
+- **Quality**: test-automator + code-reviewer, complexity/maintainability focus, Read/Grep/Sequential tools
+- **Performance**: performance-engineer + performance-optimizer, bottlenecks/optimization focus, Read/Sequential/Playwright tools
+- **Architecture**: backend-architect + codebase-research-analyst, patterns/structure focus, Read/Sequential/Context7 tools
+- **API**: backend-developer + rails-api-developer, endpoints/contracts focus, Grep/Context7/Sequential tools
+- **Frontend**: frontend-developer + react-component-architect, UI/UX focus, Magic/Context7/Playwright tools
+- **Backend**: backend-developer + rails-backend-expert, server-side focus, Context7/Sequential tools
 
 ### **Wave-Specific Specialization (Chuyên biệt theo Wave)**
-- **Review**: analyzer persona, current_state/quality_assessment focus, Read/Grep/Sequential tools
-- **Planning**: architect persona, strategy/design focus, Sequential/Context7/Write tools
-- **Implementation**: intelligent persona, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
-- **Validation**: qa persona, testing/validation focus, Sequential/Playwright/Context7 tools
-- **Optimization**: performance persona, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
+- **Review**: codebase-research-analyst + code-reviewer, current_state/quality_assessment focus, Read/Grep/Sequential tools
+- **Planning**: backend-architect + planning-strategist, strategy/design focus, Sequential/Context7/Write tools
+- **Implementation**: software-engineer + general-purpose, code_modification/feature_creation focus, Edit/MultiEdit/Task tools
+- **Validation**: test-automator + security-auditor, testing/validation focus, Sequential/Playwright/Context7 tools
+- **Optimization**: performance-engineer + database-optimizer, performance_tuning/resource_optimization focus, Read/Sequential/Grep tools
 
 ### **MCP Server Auto-Activation (Kích hoạt tự động MCP Server)**
 - **Context7**: External library imports, framework questions, documentation requests
 - **Sequential**: Complex debugging, system design, any --think flags
-- **Magic**: UI component requests, design system queries, frontend persona
-- **Playwright**: Testing workflows, performance monitoring, QA persona
+- **Magic**: UI component requests, design system queries
+- **Playwright**: Testing workflows, performance monitoring
 
-### **Persona Auto-Activation (Kích hoạt tự động Persona)**
-- **Performance Issues** → `--persona-performance` + `--focus performance` (85% confidence)
-- **UI/UX Tasks** → `--persona-frontend` + `--magic` (80% confidence)
-- **Complex Debugging** → `--persona-analyzer` + `--think` + `--seq` (75% confidence)
-- **Documentation Tasks** → `--persona-scribe=en` (70% confidence)
+### **Agent Auto-Activation (Kích hoạt tự động Agent)**
+- **Performance Issues** → `performance-engineer` + `--focus performance` (85% confidence)
+- **UI/UX Tasks** → `frontend-developer` + `react-component-architect` + `--magic` (80% confidence)
+- **Complex Debugging** → `debugger` + `debug-specialist` + `--think` + `--seq` (75% confidence)
+- **Documentation Tasks** → `technical-documentation-specialist` + `api-documenter` (70% confidence)
 
 ### **Quality Gates for Sub-Agent Selection (Cổng kiểm tra chất lượng)**
 - **Resource Validation**: Check token budget, processing requirements, file system permissions
@@ -81,7 +81,7 @@ Read before Write/Edit/Update
 Follow mode-based tool policy (sequential in standard/research; parallel only in full-de-restriction with Action Ledger)
 Validate before execution
 Check framework compatibility
-Auto-activate personas
+Auto-activate agents based on domain and complexity
 Preserve context across operations
 Use quality gates (see ORCHESTRATOR.md)
 Complete discovery before codebase changes
@@ -106,7 +106,7 @@ Assume parallel tool calls outside full‑de‑restriction mode
 
 ### Auto-Triggers
 - Wave mode: complexity ≥0.7 + multiple domains
-- Personas: domain keywords + complexity assessment  
+- Agents: domain keywords + complexity assessment
 - MCP servers: task type + performance requirements
 - **Sub-Agent delegation**: >7 directories OR >50 files OR complexity >0.8
 - **Wave auto-activation**: complexity ≥0.7 AND files >20 AND operation_types >2

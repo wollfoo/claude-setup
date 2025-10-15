@@ -6,7 +6,7 @@
 1. Explicit user flags override auto-detection
 2. Safety flags override optimization flags
 3. Performance flags activate under resource pressure
-4. Persona flags based on task patterns
+4. Agent selection flags based on task patterns
 5. MCP server flags with context-sensitive activation
 6. Wave flags based on complexity thresholds
 
@@ -20,13 +20,13 @@
 - Multi-file analysis (~4K tokens)
 - Enables Sequential MCP for structured problem-solving
 - Auto-activates: Import chains >5 files, cross-module calls >10 references
-- Auto-enables `--seq` and suggests `--persona-analyzer`
+- Auto-enables `--seq` and may suggest codebase-research-analyst or debugger agents
 
 **`--think-hard`**
 - Deep architectural analysis (~10K tokens)
 - System-wide analysis with cross-module dependencies
 - Auto-activates: System refactoring, bottlenecks >3 modules
-- Auto-enables `--seq --c7` and suggests `--persona-architect`
+- Auto-enables `--seq --c7` and may suggest backend-architect or codebase-research-analyst agents
 
 **`--ultrathink`**
 - Critical system redesign analysis (~32K tokens)
@@ -165,20 +165,6 @@
 - Pauses for review and approval before each cycle
 - Allows manual guidance and course correction
 
-## Persona Activation Flags
-
-**Available Personas**:
-- `--persona-architect`: Systems architecture specialist
-- `--persona-frontend`: UX specialist, accessibility advocate
-- `--persona-backend`: Reliability engineer, API specialist
-- `--persona-analyzer`: Root cause specialist
-- `--persona-mentor`: Knowledge transfer specialist
-- `--persona-refactorer`: Code quality specialist
-- `--persona-performance`: Optimization specialist
-- `--persona-qa`: Quality advocate, testing specialist
-- `--persona-devops`: Infrastructure specialist
-- `--persona-scribe=lang`: Professional writer, documentation specialist
-
 ## Introspection & Transparency Flags
 
 **`--introspect` / `--introspection`**
@@ -193,9 +179,9 @@
 
 **Auto-Activation Logic**:
 - **Context7**: External library imports, framework questions, documentation requests
-- **Sequential**: Complex debugging, system design, any --think flags  
-- **Magic**: UI component requests, design system queries, frontend persona
-- **Playwright**: Testing workflows, performance monitoring, QA persona
+- **Sequential**: Complex debugging, system design, any --think flags
+- **Magic**: UI component requests, design system queries, frontend-developer agent
+- **Playwright**: Testing workflows, performance monitoring, test-automator agent
 
 ### Flag Precedence
 
@@ -204,7 +190,7 @@
 3. Thinking depth: --ultrathink > --think-hard > --think
 4. --no-mcp overrides all individual MCP flags
 5. Scope: system > project > module > file
-6. Last specified persona takes precedence
+6. Last specified agent takes precedence when multiple agents selected
 7. Wave mode: --wave-mode off > --wave-mode force > --wave-mode auto
 8. Sub-Agent delegation: explicit --delegate > auto-detection
 9. Loop mode: explicit --loop > auto-detection based on refinement keywords

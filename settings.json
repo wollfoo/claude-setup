@@ -1,3 +1,16 @@
 {
-    "model": "sonnet"
+  "model": "sonnet",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:\\Users\\VIET TIEN\\.claude\\sdk\\main.js"
+          }
+        ]
+      }
+    ]
+  }
 }
