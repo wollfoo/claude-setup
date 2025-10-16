@@ -1,0 +1,575 @@
+# MONITORING DASHBOARD & ALERT SYSTEM
+## Real-time Performance Tracking for Phase 1+2 Intelligence System
+
+---
+
+## 📊 DASHBOARD LAYOUT
+
+dashboard_configuration:
+  refresh_rate: "30s"  # Auto-refresh every 30 seconds
+  retention_period: "90_days"  # Keep historical data for 3 months
+  time_zones: ["UTC", "Asia/Ho_Chi_Minh"]
+
+---
+
+## PANEL 1: SYSTEM OVERVIEW (Real-time Metrics)
+
+overview_metrics:
+
+  total_requests:
+    query: "sum(intelligence_requests_total)"
+    display: "counter"
+    color: "#3498db"
+
+  quick_filter_hit_rate:
+    query: "sum(quick_filter_hits) / sum(total_requests) * 100"
+    display: "percentage"
+    color: "#2ecc71"
+    target: ">= 60%"
+
+  context_enhanced_rate:
+    query: "sum(context_enhanced_hits) / sum(total_requests) * 100"
+    display: "percentage"
+    color: "#f39c12"
+    target: ">= 15%"
+
+  full_analysis_fallback_rate:
+    query: "sum(full_analysis_hits) / sum(total_requests) * 100"
+    display: "percentage"
+    color: "#e74c3c"
+    target: "<= 25%"
+
+  avg_detection_time:
+    query: "avg(detection_time_ms)"
+    display: "milliseconds"
+    color: "#9b59b6"
+    target: "< 25ms"
+
+  overall_accuracy:
+    query: "sum(correct_activations) / sum(total_activations) * 100"
+    display: "percentage"
+    color: "#1abc9c"
+    target: ">= 95%"
+
+visualizations:
+
+  detection_time_trend:
+    type: "line_chart"
+    title: "Detection Time Over Time"
+    time_range: "last_24_hours"
+    metrics:
+      - name: "Quick Filter"
+        query: "avg(quick_filter_time_ms)"
+        color: "#2ecc71"
+        line_width: 2
+
+      - name: "Context Enhanced"
+        query: "avg(context_enhanced_time_ms)"
+        color: "#f39c12"
+        line_width: 2
+
+      - name: "Full Analysis"
+        query: "avg(full_analysis_time_ms)"
+        color: "#e74c3c"
+        line_width: 2
+
+      - name: "Target (25ms)"
+        query: "25"
+        color: "#95a5a6"
+        line_style: "dashed"
+
+  request_distribution:
+    type: "pie_chart"
+    title: "Request Routing Distribution"
+    segments:
+      - label: "Quick Filter (<10ms)"
+        query: "sum(quick_filter_hits)"
+        color: "#2ecc71"
+
+      - label: "Context Enhanced (20-50ms)"
+        query: "sum(context_enhanced_hits)"
+        color: "#f39c12"
+
+      - label: "Full Analysis (150ms)"
+        query: "sum(full_analysis_hits)"
+        color: "#e74c3c"
+
+---
+
+## PANEL 2: PERFORMANCE METRICS
+
+performance_metrics:
+
+  response_time_percentiles:
+    p50_response_time:
+      query: "histogram_quantile(0.50, detection_time_ms)"
+      display: "milliseconds"
+      target: "< 5ms"
+
+    p95_response_time:
+      query: "histogram_quantile(0.95, detection_time_ms)"
+      display: "milliseconds"
+      target: "< 50ms"
+
+    p99_response_time:
+      query: "histogram_quantile(0.99, detection_time_ms)"
+      display: "milliseconds"
+      target: "< 100ms"
+
+  cache_performance:
+    cache_hit_rate:
+      query: "sum(cache_hits) / sum(cache_requests) * 100"
+      display: "percentage"
+      target: ">= 85%"
+
+    cache_hit_avg_time:
+      query: "avg(cache_hit_time_ms)"
+      display: "milliseconds"
+      target: "< 2ms"
+
+    cache_miss_avg_time:
+      query: "avg(cache_miss_time_ms)"
+      display: "milliseconds"
+      target: "< 50ms"
+
+  resource_usage:
+    memory_usage:
+      query: "process_memory_bytes / 1024 / 1024"
+      display: "megabytes"
+      warning_threshold: "> 500MB"
+
+    cpu_usage:
+      query: "process_cpu_usage_percent"
+      display: "percentage"
+      warning_threshold: "> 70%"
+
+visualizations:
+
+  response_time_distribution:
+    type: "histogram"
+    title: "Response Time Distribution"
+    buckets: [0, 5, 10, 25, 50, 100, 150, 200]
+    query: "histogram(detection_time_ms)"
+
+  cache_performance_trend:
+    type: "line_chart"
+    title: "Cache Hit Rate Over Time"
+    time_range: "last_7_days"
+    metrics:
+      - name: "Hit Rate"
+        query: "sum(cache_hits) / sum(cache_requests) * 100"
+        color: "#2ecc71"
+
+      - name: "Target (85%)"
+        query: "85"
+        color: "#95a5a6"
+        line_style: "dashed"
+
+---
+
+## PANEL 3: ACCURACY METRICS
+
+accuracy_metrics:
+
+  specialist_selection:
+    overall_accuracy:
+      query: "sum(correct_specialist_selections) / sum(total_selections) * 100"
+      display: "percentage"
+      target: ">= 95%"
+
+    false_positive_rate:
+      query: "sum(false_positives) / sum(total_activations) * 100"
+      display: "percentage"
+      target: "< 2%"
+
+    false_negative_rate:
+      query: "sum(false_negatives) / sum(total_requests) * 100"
+      display: "percentage"
+      target: "< 2%"
+
+  domain_accuracy_breakdown:
+    frontend_accuracy:
+      query: "sum(correct_frontend) / sum(total_frontend) * 100"
+      display: "percentage"
+
+    backend_accuracy:
+      query: "sum(correct_backend) / sum(total_backend) * 100"
+      display: "percentage"
+
+    testing_accuracy:
+      query: "sum(correct_testing) / sum(total_testing) * 100"
+      display: "percentage"
+
+    documentation_accuracy:
+      query: "sum(correct_documentation) / sum(total_documentation) * 100"
+      display: "percentage"
+
+    devops_accuracy:
+      query: "sum(correct_devops) / sum(total_devops) * 100"
+      display: "percentage"
+
+visualizations:
+
+  accuracy_by_domain:
+    type: "bar_chart"
+    title: "Accuracy by Domain"
+    metrics:
+      - domain: "Frontend"
+        query: "sum(correct_frontend) / sum(total_frontend) * 100"
+        color: "#3498db"
+
+      - domain: "Backend"
+        query: "sum(correct_backend) / sum(total_backend) * 100"
+        color: "#2ecc71"
+
+      - domain: "Testing"
+        query: "sum(correct_testing) / sum(total_testing) * 100"
+        color: "#f39c12"
+
+      - domain: "Documentation"
+        query: "sum(correct_documentation) / sum(total_documentation) * 100"
+        color: "#9b59b6"
+
+      - domain: "DevOps"
+        query: "sum(correct_devops) / sum(total_devops) * 100"
+        color: "#e74c3c"
+
+      - target_line: 95
+        color: "#95a5a6"
+        line_style: "dashed"
+
+  confidence_distribution:
+    type: "histogram"
+    title: "Confidence Score Distribution"
+    buckets: [0.0, 0.5, 0.6, 0.7, 0.75, 0.80, 0.85, 0.90, 0.95, 1.0]
+    query: "histogram(confidence_scores)"
+
+---
+
+## PANEL 4: ALERT STATUS
+
+active_alerts:
+  display: "list_view"
+  auto_refresh: "10s"
+
+  columns:
+    - name: "Severity"
+      width: "10%"
+      color_coding: true
+
+    - name: "Alert Name"
+      width: "30%"
+
+    - name: "Condition"
+      width: "35%"
+
+    - name: "Triggered At"
+      width: "15%"
+
+    - name: "Actions"
+      width: "10%"
+
+alert_history:
+  time_range: "last_7_days"
+  display: "timeline_view"
+
+  filters:
+    - severity: ["critical", "warning", "info"]
+    - status: ["active", "resolved", "acknowledged"]
+
+---
+
+## 🚨 ALERT RULES CONFIGURATION
+
+alert_rules:
+
+  # CRITICAL ALERTS (Immediate Action Required)
+
+  accuracy_critical:
+    name: "Critical Accuracy Degradation"
+    condition: "sum(correct_activations) / sum(total_activations) * 100 < 92"
+    severity: "critical"
+    evaluation_interval: "1m"
+    for: "5m"  # Must persist for 5 minutes
+    actions:
+      - type: "rollback"
+        target: "disable_phase_1_2"
+      - type: "notify"
+        channels: ["slack", "email", "pagerduty"]
+        recipients: ["engineering_team", "on_call_engineer"]
+    message: |
+      🚨 CRITICAL: Accuracy dropped below 92% (current: {{ value }}%)
+      Automatic rollback initiated. Investigation required immediately.
+
+  high_error_rate:
+    name: "High Error Rate"
+    condition: "sum(errors) / sum(total_requests) * 100 > 1"
+    severity: "critical"
+    evaluation_interval: "30s"
+    for: "2m"
+    actions:
+      - type: "rollback"
+        target: "reduce_traffic_to_previous_level"
+      - type: "notify"
+        channels: ["slack", "email", "pagerduty"]
+    message: |
+      🚨 CRITICAL: Error rate exceeded 1% (current: {{ value }}%)
+      Traffic reduced automatically. Check logs immediately.
+
+  system_unavailable:
+    name: "System Unavailability"
+    condition: "up{job='intelligence_system'} == 0"
+    severity: "critical"
+    evaluation_interval: "10s"
+    for: "1m"
+    actions:
+      - type: "rollback"
+        target: "full_rollback_to_legacy"
+      - type: "notify"
+        channels: ["slack", "pagerduty"]
+        priority: "P0"
+    message: |
+      🚨 CRITICAL: Intelligence system is down
+      Full rollback to legacy system executed automatically.
+
+  # WARNING ALERTS (Investigation Needed)
+
+  performance_degradation:
+    name: "Performance Degradation"
+    condition: "avg(detection_time_ms) > 50"
+    severity: "warning"
+    evaluation_interval: "5m"
+    for: "15m"
+    actions:
+      - type: "notify"
+        channels: ["slack", "email"]
+    message: |
+      ⚠️ WARNING: Average detection time exceeded 50ms (current: {{ value }}ms)
+      Performance investigation recommended.
+
+  cache_hit_rate_low:
+    name: "Low Cache Hit Rate"
+    condition: "sum(cache_hits) / sum(cache_requests) * 100 < 85"
+    severity: "warning"
+    evaluation_interval: "5m"
+    for: "15m"
+    actions:
+      - type: "notify"
+        channels: ["slack"]
+    message: |
+      ⚠️ WARNING: Cache hit rate below 85% (current: {{ value }}%)
+      Cache optimization may be needed.
+
+  false_positive_spike:
+    name: "False Positive Rate Spike"
+    condition: "sum(false_positives) / sum(total_activations) * 100 > 2"
+    severity: "warning"
+    evaluation_interval: "10m"
+    for: "30m"
+    actions:
+      - type: "notify"
+        channels: ["slack"]
+    message: |
+      ⚠️ WARNING: False positive rate increased to {{ value }}%
+      Pattern database review recommended.
+
+  # INFO ALERTS (Informational)
+
+  traffic_milestone:
+    name: "Traffic Milestone Reached"
+    condition: "sum(intelligence_requests_total) % 10000 == 0"
+    severity: "info"
+    evaluation_interval: "5m"
+    actions:
+      - type: "notify"
+        channels: ["slack"]
+    message: |
+      ℹ️ INFO: Processed {{ value }} requests
+      System performance continues as expected.
+
+  daily_summary:
+    name: "Daily Performance Summary"
+    schedule: "0 0 * * *"  # Every day at midnight UTC
+    severity: "info"
+    actions:
+      - type: "report"
+        template: "daily_summary"
+      - type: "notify"
+        channels: ["email"]
+    message: |
+      📊 Daily Summary:
+      - Total Requests: {{ total_requests }}
+      - Avg Detection Time: {{ avg_detection_time }}ms
+      - Accuracy: {{ accuracy }}%
+      - Cache Hit Rate: {{ cache_hit_rate }}%
+
+---
+
+## 📈 METRICS COLLECTION SPECIFICATION
+
+metrics_collection:
+
+  prometheus_format:
+
+    # Counter metrics
+    counters:
+      - name: "intelligence_requests_total"
+        help: "Total number of intelligence system requests"
+        labels: ["source", "result"]
+
+      - name: "quick_filter_hits_total"
+        help: "Number of requests handled by Quick Filter"
+        labels: ["pattern_type", "confidence_level"]
+
+      - name: "context_enhanced_hits_total"
+        help: "Number of requests enhanced by context analysis"
+        labels: ["signal_count", "domain"]
+
+      - name: "full_analysis_fallback_total"
+        help: "Number of requests requiring full 8-step analysis"
+        labels: ["reason"]
+
+      - name: "specialist_selections_total"
+        help: "Total specialist activations"
+        labels: ["specialist", "domain", "correct"]
+
+      - name: "errors_total"
+        help: "Total errors encountered"
+        labels: ["error_type", "severity"]
+
+    # Histogram metrics
+    histograms:
+      - name: "detection_time_ms"
+        help: "Detection time in milliseconds"
+        buckets: [0, 5, 10, 25, 50, 100, 150, 200, 500]
+        labels: ["phase", "cache_hit"]
+
+      - name: "confidence_scores"
+        help: "Distribution of confidence scores"
+        buckets: [0.0, 0.5, 0.6, 0.7, 0.75, 0.80, 0.85, 0.90, 0.95, 1.0]
+        labels: ["source", "domain"]
+
+    # Gauge metrics
+    gauges:
+      - name: "cache_size_bytes"
+        help: "Current cache size in bytes"
+
+      - name: "active_sessions"
+        help: "Number of active user sessions"
+
+      - name: "memory_usage_bytes"
+        help: "Current memory usage in bytes"
+
+      - name: "cpu_usage_percent"
+        help: "Current CPU usage percentage"
+
+  export_endpoints:
+    metrics_endpoint: "/metrics"
+    health_endpoint: "/health"
+    readiness_endpoint: "/ready"
+
+---
+
+## 🔍 LOG AGGREGATION
+
+logging_configuration:
+
+  log_levels:
+    staging: "debug"
+    production: "info"
+    emergency: "warn"
+
+  structured_logging:
+    format: "json"
+    timestamp: "iso8601"
+    include_trace_id: true
+
+    required_fields:
+      - timestamp
+      - level
+      - message
+      - request_id
+      - session_id
+      - phase  # quick_filter | context_enhanced | full_analysis
+      - specialist
+      - confidence
+      - execution_time_ms
+
+    optional_fields:
+      - user_id
+      - domain
+      - pattern_matched
+      - signals_used
+      - boost_applied
+      - error_details
+
+  log_retention:
+    debug: "7_days"
+    info: "30_days"
+    warn: "90_days"
+    error: "180_days"
+
+  log_aggregation:
+    service: "elasticsearch"
+    index_pattern: "intelligence-system-logs-*"
+    shards: 3
+    replicas: 1
+
+---
+
+## 📋 WEEKLY REPORT TEMPLATE
+
+weekly_report:
+
+  report_schedule: "every_monday_9am_utc"
+
+  sections:
+
+    executive_summary:
+      - total_requests_processed
+      - avg_detection_time_improvement
+      - accuracy_vs_baseline
+      - key_achievements
+      - issues_encountered
+
+    performance_metrics:
+      - quick_filter_hit_rate_trend
+      - context_enhanced_rate_trend
+      - response_time_percentiles
+      - cache_performance
+
+    accuracy_metrics:
+      - overall_accuracy_trend
+      - domain_breakdown
+      - false_positive_analysis
+      - false_negative_analysis
+
+    system_health:
+      - uptime_percentage
+      - error_rate_trend
+      - resource_utilization
+      - alert_summary
+
+    user_feedback:
+      - satisfaction_score
+      - common_issues
+      - feature_requests
+
+    recommendations:
+      - pattern_database_updates_needed
+      - confidence_threshold_adjustments
+      - optimization_opportunities
+
+  distribution:
+    recipients:
+      - engineering_team@company.com
+      - product_team@company.com
+      - management@company.com
+    format: "pdf + interactive_dashboard_link"
+
+---
+
+**Monitoring Status**: ✅ Configuration Complete
+**Dashboard**: Ready for deployment
+**Alerts**: Configured with automatic rollback triggers
+**Logging**: Structured JSON with full trace support

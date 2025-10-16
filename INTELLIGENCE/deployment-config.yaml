@@ -1,0 +1,409 @@
+# PRODUCTION DEPLOYMENT CONFIGURATION
+## Phase 1 + Phase 2 Intelligence System Rollout
+
+---
+
+deployment_metadata:
+  version: "1.0.0"
+  phases: ["Quick Pre-Filter", "Context-Aware Analysis"]
+  deployment_strategy: "canary"
+  total_duration: "3_weeks"
+  rollback_threshold: "accuracy < 0.92 OR errors > 0.01"
+
+---
+
+## TUẦN 1: STAGING DEPLOYMENT (20% TRAFFIC)
+
+week_1_staging:
+
+  environment:
+    target: "staging"
+    traffic_percentage: 20
+    deployment_date: "2025-10-16"
+    duration: "7_days"
+
+  feature_flags:
+    quick_filter_enabled: true
+    context_analysis_enabled: true
+    enhanced_filter_enabled: true
+    learning_mode: false  # Không thu thập dữ liệu học trong staging
+
+  performance_targets:
+    avg_response_time: "< 10ms"  # Quick Filter
+    p95_response_time: "< 15ms"
+    p99_response_time: "< 25ms"
+    accuracy_threshold: ">= 0.95"
+    error_rate: "< 0.01"
+    cache_hit_rate: ">= 0.85"
+
+  monitoring:
+    metrics_collection_interval: "30s"
+    log_level: "debug"  # Verbose logging cho staging
+    alert_channels: ["email", "slack"]
+
+    critical_alerts:
+      - condition: "accuracy < 0.92"
+        action: "immediate_rollback"
+        notification: "critical"
+
+      - condition: "error_rate > 0.01"
+        action: "immediate_rollback"
+        notification: "critical"
+
+      - condition: "avg_response_time > 15ms"
+        action: "investigate"
+        notification: "warning"
+
+    dashboard_metrics:
+      - quick_filter_hit_rate
+      - context_enhanced_rate
+      - full_analysis_fallback_rate
+      - avg_detection_time
+      - specialist_accuracy
+      - false_positive_rate
+      - false_negative_rate
+      - cache_performance
+
+  rollback_plan:
+    trigger_conditions:
+      - "accuracy < 0.92"
+      - "error_rate > 0.01"
+      - "critical_bug_detected"
+
+    rollback_steps:
+      1: "Disable feature flags (quick_filter_enabled = false)"
+      2: "Route all traffic to legacy 8-step analysis"
+      3: "Notify engineering team"
+      4: "Capture debug logs for analysis"
+      5: "Schedule post-mortem review"
+
+    estimated_rollback_time: "< 5_minutes"
+
+  success_criteria:
+    - "Accuracy >= 95%"
+    - "Avg response time < 10ms for 60%+ requests"
+    - "No critical errors for 7 consecutive days"
+    - "User feedback: neutral or positive"
+
+---
+
+## TUẦN 2: PRODUCTION ROLLOUT (50% TRAFFIC)
+
+week_2_production:
+
+  environment:
+    target: "production"
+    traffic_percentage: 50
+    deployment_date: "2025-10-23"
+    duration: "7_days"
+
+  prerequisites:
+    - "Week 1 success criteria met"
+    - "No critical bugs identified"
+    - "Engineering team approval"
+
+  feature_flags:
+    quick_filter_enabled: true
+    context_analysis_enabled: true
+    enhanced_filter_enabled: true
+    learning_mode: true  # Bắt đầu thu thập dữ liệu học
+    a_b_testing_enabled: true  # So sánh với hệ thống cũ
+
+  a_b_testing:
+    groups:
+      control_group:
+        name: "Legacy 8-Step Analysis"
+        traffic: 50
+        description: "Hệ thống phát hiện hiện tại (baseline)"
+
+      treatment_group:
+        name: "Phase 1+2 Intelligence"
+        traffic: 50
+        description: "Quick Filter + Context-Aware Analysis"
+
+    comparison_metrics:
+      - avg_detection_time
+      - specialist_accuracy
+      - activation_rate
+      - user_satisfaction
+      - resource_usage
+
+    statistical_significance:
+      confidence_level: 0.95
+      minimum_sample_size: 1000
+
+  performance_targets:
+    avg_response_time: "< 25ms"  # Weighted average
+    p95_response_time: "< 60ms"
+    p99_response_time: "< 100ms"
+    accuracy_threshold: ">= 0.95"
+    error_rate: "< 0.005"
+
+  monitoring:
+    metrics_collection_interval: "60s"
+    log_level: "info"  # Giảm verbosity trong production
+
+    critical_alerts:
+      - condition: "accuracy < 0.92"
+        action: "rollback_to_20%"
+
+      - condition: "error_rate > 0.01"
+        action: "rollback_to_20%"
+
+      - condition: "avg_response_time > 50ms"
+        action: "investigate"
+
+  rollback_plan:
+    partial_rollback:
+      action: "Reduce to 20% traffic"
+      maintain: "Staging environment active"
+
+    full_rollback:
+      action: "Disable all feature flags"
+      fallback: "100% legacy system"
+
+---
+
+## TUẦN 3: FULL PRODUCTION (100% TRAFFIC)
+
+week_3_full_production:
+
+  environment:
+    target: "production"
+    traffic_percentage: 100
+    deployment_date: "2025-10-30"
+    duration: "ongoing"
+
+  prerequisites:
+    - "Week 2 A/B testing shows significant improvement"
+    - "No degradation in accuracy or performance"
+    - "User feedback positive"
+
+  feature_flags:
+    quick_filter_enabled: true
+    context_analysis_enabled: true
+    enhanced_filter_enabled: true
+    learning_mode: true
+    continuous_optimization: true
+
+  performance_targets:
+    avg_response_time: "< 25ms"
+    accuracy_threshold: ">= 0.95"
+    activation_rate: ">= 0.70"  # 70%+ requests handled by Phase 1+2
+    error_rate: "< 0.003"
+
+  monitoring:
+    metrics_collection_interval: "300s"  # 5 minutes
+    log_level: "warn"  # Production standard
+
+    continuous_improvement:
+      pattern_database_updates: "weekly"
+      confidence_threshold_tuning: "monthly"
+      performance_reviews: "quarterly"
+
+  emergency_protocols:
+    immediate_rollback_triggers:
+      - "accuracy < 0.90"
+      - "error_rate > 0.02"
+      - "system_unavailable > 5_minutes"
+
+    on_call_rotation:
+      primary: "engineering_team"
+      secondary: "platform_team"
+      escalation: "cto"
+
+---
+
+## MONITORING DASHBOARD SPECIFICATION
+
+monitoring_dashboard:
+
+  overview_panel:
+    metrics:
+      - total_requests_today
+      - quick_filter_hit_rate
+      - context_enhanced_rate
+      - full_analysis_fallback_rate
+      - avg_detection_time
+      - overall_accuracy
+
+    visualizations:
+      - type: "line_chart"
+        title: "Detection Time Over Time"
+        metrics: ["quick_filter_time", "context_time", "full_analysis_time"]
+
+      - type: "pie_chart"
+        title: "Request Distribution"
+        segments: ["quick_filter", "context_enhanced", "full_analysis"]
+
+  performance_panel:
+    metrics:
+      - p50_response_time
+      - p95_response_time
+      - p99_response_time
+      - cache_hit_rate
+      - memory_usage
+
+    thresholds:
+      warning: "p95 > 50ms OR cache_hit < 0.85"
+      critical: "p95 > 100ms OR cache_hit < 0.70"
+
+  accuracy_panel:
+    metrics:
+      - specialist_selection_accuracy
+      - false_positive_rate
+      - false_negative_rate
+      - vague_pattern_rejection_rate
+
+    breakdown_by_domain:
+      - frontend_accuracy
+      - backend_accuracy
+      - testing_accuracy
+      - documentation_accuracy
+      - devops_accuracy
+
+  alerts_panel:
+    active_alerts: []
+    alert_history: "last_7_days"
+
+    alert_rules:
+      - name: "High False Positive Rate"
+        condition: "false_positive_rate > 0.02"
+        severity: "warning"
+
+      - name: "Accuracy Degradation"
+        condition: "accuracy < 0.92"
+        severity: "critical"
+
+      - name: "Performance Degradation"
+        condition: "avg_response_time > 50ms"
+        severity: "warning"
+
+---
+
+## ROLLBACK PROCEDURES
+
+rollback_procedures:
+
+  level_1_partial_rollback:
+    description: "Reduce traffic to previous stable percentage"
+    trigger: "Non-critical performance degradation"
+    steps:
+      1: "Reduce traffic_percentage by 30%"
+      2: "Monitor for 1 hour"
+      3: "If stable, maintain; if not, proceed to Level 2"
+
+    estimated_time: "< 10_minutes"
+
+  level_2_full_rollback:
+    description: "Disable Phase 1+2, route to legacy system"
+    trigger: "Critical accuracy or error rate issues"
+    steps:
+      1: "Set all feature_flags = false"
+      2: "Route 100% traffic to legacy 8-step analysis"
+      3: "Capture debug snapshot"
+      4: "Notify engineering team immediately"
+      5: "Schedule emergency meeting"
+
+    estimated_time: "< 5_minutes"
+
+  level_3_emergency_shutdown:
+    description: "System-wide rollback + investigation"
+    trigger: "System unavailability or data corruption"
+    steps:
+      1: "Immediate full rollback (Level 2)"
+      2: "Disable all related services"
+      3: "Activate incident response team"
+      4: "Begin root cause analysis"
+      5: "Prepare incident report"
+
+    estimated_time: "< 2_minutes"
+
+---
+
+## SUCCESS METRICS TRACKING
+
+success_metrics:
+
+  quantitative:
+    - metric: "Avg Detection Time"
+      baseline: "150ms"
+      target: "< 25ms"
+      current: "TBD"
+
+    - metric: "Activation Rate"
+      baseline: "40-60%"
+      target: ">= 70%"
+      current: "TBD"
+
+    - metric: "Specialist Accuracy"
+      baseline: "90%"
+      target: ">= 95%"
+      current: "TBD"
+
+    - metric: "Ambiguous Request Handling"
+      baseline: "0%"
+      target: ">= 50%"
+      current: "TBD"
+
+  qualitative:
+    - metric: "User Satisfaction"
+      measurement: "Survey + feedback analysis"
+      target: "Neutral or positive sentiment"
+
+    - metric: "Developer Experience"
+      measurement: "Internal team feedback"
+      target: "Improved workflow efficiency"
+
+  continuous_tracking:
+    frequency: "daily"
+    reporting: "weekly"
+    review_meetings: "bi-weekly"
+
+---
+
+## DEPLOYMENT CHECKLIST
+
+pre_deployment_checklist:
+  code_quality:
+    - "✅ All unit tests passing (100% coverage)"
+    - "✅ Integration tests passing"
+    - "✅ Performance benchmarks met"
+    - "✅ Code reviewed and approved"
+
+  configuration:
+    - "✅ Feature flags configured"
+    - "✅ Environment variables set"
+    - "✅ Monitoring endpoints ready"
+    - "✅ Alert rules configured"
+
+  documentation:
+    - "✅ Deployment guide complete"
+    - "✅ Rollback procedures documented"
+    - "✅ Troubleshooting guide ready"
+    - "✅ Runbook updated"
+
+  communication:
+    - "✅ Stakeholders notified"
+    - "✅ On-call schedule confirmed"
+    - "✅ Incident response plan ready"
+    - "✅ Status page prepared"
+
+post_deployment_validation:
+  immediate_checks:
+    - "Verify feature flags active"
+    - "Confirm traffic routing correct"
+    - "Check error rate < 0.01"
+    - "Validate accuracy >= 0.95"
+
+  24_hour_monitoring:
+    - "Track all critical metrics"
+    - "Review logs for anomalies"
+    - "Monitor user feedback"
+    - "Prepare status report"
+
+---
+
+**Deployment Status**: ✅ Configuration Ready
+**Risk Level**: 🟢 Low (comprehensive testing + rollback plan)
+**Recommendation**: 🚀 PROCEED with Week 1 Staging Deployment
