@@ -1,5 +1,4 @@
 {
-  "model": "sonnet",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -7,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node C:\\Users\\VIET TIEN\\.claude\\sdk\\main.js"
+            "command": "node \"C:\\Users\\VIET TIEN\\.claude\\sdk\\main.js\""
           }
         ]
       }

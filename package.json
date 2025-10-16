@@ -1,19 +1,26 @@
 {
   "name": "intelligence-system",
-  "version": "1.0.0",
-  "description": "Phase 1+2 Intelligence System - Quick Pre-Filter + Context-Aware Analysis",
-  "main": "intelligence/quick-filter-engine.ts",
+  "version": "3.0.0-alpha",
+  "description": "Phase 3 Adaptive Threshold System - Alpha Deployment",
+  "main": "alpha-demo.ts",
   "scripts": {
-    "test": "echo \"Test suite ready - see quick-filter-tests.md and phase-2-tests.md\"",
-    "build": "echo \"Build complete - TypeScript files ready for deployment\"",
+    "alpha": "ts-node --transpile-only alpha-demo.ts",
+    "alpha:env": "ts-node --transpile-only -r dotenv/config alpha-demo.ts dotenv_config_path=.env.alpha",
+    "build": "tsc",
     "build:production": "npm run build && echo \"Production build: ✅ Complete\"",
     "benchmark": "echo \"Performance Benchmarks:\n  Quick Filter: 4.2ms avg (✅ target <10ms)\n  Context Enhanced: 52ms avg (✅ target <60ms)\n  Accuracy: 98.0% (✅ target >92%)\n  Cache Hit Rate: 95.2% (✅ target >85%)\""
   },
-  "keywords": ["intelligence", "agent-selection", "performance"],
+  "keywords": ["intelligence", "agent-selection", "adaptive-threshold", "phase-3"],
   "author": "Intelligence Team",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "dotenv": "^16.4.0"
   }
 }
