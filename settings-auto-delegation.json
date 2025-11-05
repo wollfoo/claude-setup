@@ -1,0 +1,66 @@
+{
+  "env": {
+    "CLAUDE_AUTO_DELEGATION_ENABLED": "true",
+    "CLAUDE_DELEGATION_ENFORCEMENT": "strict",
+    "CLAUDE_TASK_ANALYSIS_MODE": "automatic"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | .claude/scripts/auto-delegate.sh",
+            "continue_on_error": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash(find|grep|ls.*-R|tree|cat.*\\*.md)",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "⚠️ ANALYSIS TOOL DETECTED - Check delegation requirement:\n\nBefore using this tool for exploration or analysis, verify:\n1. Is this a complex analysis task?\n2. Should this be delegated to a specialized agent?\n3. Can Task tool with appropriate subagent_type handle this better?\n\nIf yes to any above, STOP and use Task tool instead.\n\nCurrent task analysis patterns:\n- 'phân tích', 'analyze', 'explore' → researcher/Explore agent\n- 'implement', 'code', 'build' → coder agent\n- 'design', 'architecture' → system-architect agent\n- 'multiple', 'comprehensive' → task-orchestrator agent"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.command // empty' | xargs -I {} sh -c 'if echo \"{}\" | grep -E \"(find|grep|ls.*-R|tree)\" > /dev/null; then echo \"🚫 ANALYSIS COMMAND BLOCKED - Use Task tool instead\"; exit 1; else echo \"✅ Command approved\"; exit 0; fi'",
+            "continue_on_error": false
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(.claude/scripts/*)",
+      "Bash(cat)",
+      "Bash(jq)",
+      "Bash(grep)",
+      "Bash(xargs)",
+      "Bash(sh)",
+      "Bash(echo)",
+      "Bash(exit)"
+    ],
+    "deny": [
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(ls -R *)",
+      "Bash(tree *)"
+    ]
+  },
+  "includeCoAuthoredBy": true,
+  "enabledMcpjsonServers": ["claude-flow", "ruv-swarm"],
+  "statusLine": {
+    "type": "command",
+    "command": ".claude/statusline-command.sh"
+  }
+}
