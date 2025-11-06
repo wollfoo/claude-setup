@@ -1,3 +1,4 @@
+
 # 💡 Giải pháp kích hoạt Automatic Delegation cho Claude Code
 
 **Mục đích:** Tài liệu này tổng hợp các giải pháp để kích hoạt cơ chế tự động điều phối sub-agents trong Claude Code CLI.
