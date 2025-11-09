@@ -52,15 +52,74 @@ Primary agent (orchestrator) automatically activates specialist subagents based 
 
 ### Agent Discovery
 
-**59 specialist agents** available in `agents/` directory:
-- Research & Analysis: `@code-searcher`, `@planner-researcher`, `@codebase-research-analyst`
-- Development: `@backend-developer`, `@typescript-expert`, `@python-pro`, `@rust-pro`
-- Testing & Quality: `@tester`, `@code-reviewer`, `@debug-specialist`, `@security-auditor`
-- Documentation: `@prd-writer`, `@documentation-specialist`, `@api-documenter`
-- DevOps & Infrastructure: `@devops-engineer`, `@git-manager`, `@database-specialist`
-- Specialized: `@code-refactorer`, `@performance-engineer`, `@ui-ux-designer`
+**55+ specialist agents** available in `agents/` directory, organized by functional groups:
 
-Each agent declares: `name`, `description`, `triggers`, `capabilities`, `constraints`.
+#### **Security & Quality (4 core agents)**
+High-priority agents for code safety, testing, and production reliability:
+- `@security-auditor` - Comprehensive security audit, vulnerability scanning, OWASP compliance
+- `@code-reviewer` - Code quality, best practices, static analysis, security patterns  
+- `@tester` - Test suite execution, coverage analysis (≥80% unit, ≥70% integration), QA validation
+- `@performance-engineer` - Performance optimization, benchmarking, bottleneck detection
+
+**Auto-activation triggers**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization, benchmark
+
+---
+
+#### **Development (6 core agents)**
+Implementation specialists for backend, frontend, database, infrastructure, and data engineering:
+- `@backend-architect` - Backend system design, API architecture (REST/GraphQL/gRPC), microservices
+- `@frontend-developer` - Frontend implementation, React/Vue, UI components, responsive design
+- `@database-specialist` - Database design, query optimization, migrations, indexing strategies
+- `@devops-engineer` - Infrastructure, CI/CD, deployment automation, container orchestration
+- `@mobile-developer` - Mobile app development (iOS/Android), React Native, native platforms
+- `@data-engineer` - Data pipelines, ETL workflows, analytics, data warehouse design
+
+**Auto-activation triggers**: backend, frontend, api, database, sql, devops, deployment, ci/cd, mobile, ios, android, data pipeline, etl
+
+---
+
+#### **Architecture & Planning (5 core agents)**
+Strategic agents for research, design, analysis, and documentation:
+- `@planner-researcher` - Technical research, system design, planning, best practices analysis
+- `@architect-review` - Architecture review, design patterns, system evaluation, technical assessment
+- `@code-searcher` - Codebase analysis, pattern detection, dependency mapping, code navigation
+- `@context-manager` - Context management, memory coordination, RAG optimization, context engineering
+- `@docs-architect` - Documentation architecture, technical writing, API documentation, developer guides
+
+**Auto-activation triggers**: research, plan, architecture, design, analyze, review, search, find, context, documentation, docs
+
+---
+
+#### **Specialized (7+ domain experts)**
+Language-specific and technology-specific specialists:
+- `@graphql-architect` - GraphQL schema design, resolver optimization, federation, DataLoader patterns
+- `@golang-pro` - Go development, concurrency patterns, goroutines, channels
+- `@python-pro` - Python development, async programming, FastAPI, Django
+- `@typescript-expert` - TypeScript, type safety, advanced patterns, generics
+- `@rust-pro` - Rust systems programming, memory safety, zero-cost abstractions
+- `@blockchain-developer` - Smart contracts, Web3 integration, Solidity, dApp development
+- `@ml-engineer` - Machine learning, model deployment, training pipelines, MLOps
+
+**Auto-activation triggers**: graphql, golang, go, python, typescript, rust, blockchain, solidity, web3, machine learning, ml, model
+
+---
+
+#### **Additional Specialists (30+ agents)**
+Extended coverage for specialized workflows:
+- **Refactoring & Modernization**: `@code-refactor-master`, `@legacy-modernizer`
+- **Debugging & Troubleshooting**: `@debug-specialist`
+- **UI/UX & Design**: `@ui-ux-designer`, `@frontend-designer`
+- **Project Management**: `@project-analyst`, `@project-task-planner`, `@prd-writer`, `@planning-strategist`
+- **Content & Writing**: `@content-writer`, `@technical-documentation-specialist`, `@web-research-specialist`
+- **Finance & Trading**: `@quant-analyst`, `@crypto-analyst`, `@crypto-trader`, `@crypto-risk-manager`, `@defi-strategist`, `@arbitrage-bot`
+- **Blockchain Specialized**: `@hyperledger-fabric-developer`
+- **Language Specific**: `@php-developer`, `@ruby-pro`
+- **Other**: `@game-developer`, `@payment-integration`, `@data-scientist`, `@vibe-coding-coach`, `@tech-knowledge-assistant`, `@memory-bank-synchronizer`, `@plan-reviewer`, `@refactor-planner`, `@get-current-datetime`, `@cloud-architect`
+
+---
+
+**Agent Metadata Structure**:
+Each agent declares: `name`, `description`, `category`, `triggers` (keywords, task_patterns, domains), `capabilities` (allowed_tools), `constraints` (paths, file types), `model` preference.
 
 ### Coordination Protocol
 
@@ -118,6 +177,15 @@ Current `settings.json` enables:
 | "fix bug in payment processing" | `@debug-specialist` | keywords: fix/bug + domains: debugging |
 | "write tests for user service" | `@tester` | keywords: test/write + file_patterns: *service* |
 | "optimize database queries" | `@performance-engineer` | keywords: optimize + domains: performance |
+| "review microservices architecture" | `@architect-review` | task_patterns: "review * architecture" + keywords: review/microservices/architecture + domains: architecture |
+| "design REST API for e-commerce" | `@backend-architect` | task_patterns: "design * api" + keywords: design/api/rest + domains: api-design/backend-architecture |
+| "create microservices with Kafka" | `@backend-architect` | task_patterns: "* microservices" + keywords: microservices/kafka/event-driven + domains: microservices/event-driven |
+| "design federated GraphQL schema" | `@graphql-architect` | task_patterns: "design * graphql" + keywords: graphql/federation/schema + domains: graphql/federation |
+| "optimize GraphQL resolver performance" | `@graphql-architect` | task_patterns: "optimize * graphql" + keywords: optimize/graphql/resolver/dataloader + domains: graphql/performance-optimization |
+| "document system architecture" | `@docs-architect` | task_patterns: "document *" + keywords: documentation/architecture/system + domains: documentation/architecture-documentation |
+| "create API reference guide" | `@docs-architect` | task_patterns: "* api" + keywords: api/documentation/guide + domains: api-documentation/developer-guides |
+| "design context management system" | `@context-manager` | task_patterns: "design * context" + keywords: design/context/management + domains: context-engineering |
+| "optimize RAG performance" | `@context-manager` | task_patterns: "optimize rag *" + keywords: optimize/rag + domains: rag/information-retrieval |
 
 ### Quality Checks
 
