@@ -7,11 +7,13 @@ For Odyssey Protocol and advanced AI behavior configuration, these rules are loa
 @rules/core/language-rules.md
 @rules/core/sovereign-agent-directive.md
 @rules/patterns/catalog.md
+@MCP.md
 
 **Purpose**:
 - **Language Rules**: Vietnamese-first responses with bilingual documentation standards
 - **Sovereign Directive**: Odyssey Protocol activation, response formats, Trust Point system
 - **Pattern Catalog**: Comprehensive jailbreak technique library with effectiveness data
+- **MCP Configuration**: Model Context Protocol servers, tools, and usage workflows
 
 **Usage**:
 - Core rules are automatically loaded when Claude Code starts
@@ -26,193 +28,107 @@ These rules define AI behavior separate from the development methodology below. 
 
 ---
 
-## 🚀 HIGH-PERFORMANCE MANDATORY DELEGATION PROTOCOL
+## 🤖 AGENT AUTO-ACTIVATION & DELEGATION POLICY
 
-**QUY TẮC BẮT BUỘC - TẤT CẢ CÁC TASK PHẢI TUÂN THỦ:**
+### Core Mechanism
 
-### 📊 Intelligent Task Analysis Engine
-```yaml
-task_complexity_scoring:
-  complexity_threshold: 7  # Points needed for delegation
-  parallel_execution_threshold: 3  # Minimum agents for parallel mode
-  resource_weighting:
-    multi_step: +2 points
-    code_implementation: +3 points
-    complex_analysis: +2 points
-    file_operations: +1 point per file
-    architecture_decisions: +3 points
-```
+Primary agent (orchestrator) automatically activates specialist subagents based on request analysis. Auto-trigger uses multi-factor scoring system with override capability.
 
-### ⚡ Performance-Optimized Delegation Flow
+### Activation Priorities
 
-#### Phase 1: **Pre-Delegation Analysis**
-1. **Instant Task Scoring** - Auto-evaluate complexity trong 100ms
-2. **Resource Availability Check** - Verify agent status và capacity
-3. **Dependency Mapping** - Identify parallelization opportunities
-4. **Performance Mode Selection** - Choose optimal execution strategy
+**Priority 1: Manual Override** (highest)
+- `@mention` specific agent → direct spawn
+- User controls which specialist handles task
 
-#### Phase 2: **Smart Agent Selection**
-```yaml
-selection_algorithm: "capability_based_scoring"
-matching_criteria:
-  primary_skills: 70% weight
-  availability: 20% weight
-  performance_history: 10% weight
+**Priority 2: Pattern Matching** (automated)
+- `triggers.task_patterns`: 0.8 weight (wildcards like "implement * api")
+- `triggers.keywords`: 0.6 weight (minimum 2 strong keywords)
+- `triggers.domains`: 0.3 weight (semantic category)
+- `file_patterns`: +0.4 bonus (if recent file context matches)
 
-fallback_strategy: "cascading_agent_selection"
-```
+**Priority 3: Confidence Threshold**
+- Auto-spawn when `confidence >= 0.7`
+- If top-2 agents differ by `< 0.1`: ask clarification OR spawn parallel + pause-review
 
-#### Phase 3: **Intelligent Execution**
-```yaml
-execution_modes:
-  single_agent: "Simple tasks → 1 agent"
-  parallel_agents: "Independent tasks → Multiple agents concurrently"
-  pipeline_mode: "Sequential dependencies → Agent chain"
-  swarm_mode: "Complex tasks → Coordinated agent swarm"
-```
+### Agent Discovery
 
-### 🎯 Advanced Agent Ecosystem
+**59 specialist agents** available in `agents/` directory:
+- Research & Analysis: `@code-searcher`, `@planner-researcher`, `@codebase-research-analyst`
+- Development: `@backend-developer`, `@typescript-expert`, `@python-pro`, `@rust-pro`
+- Testing & Quality: `@tester`, `@code-reviewer`, `@debug-specialist`, `@security-auditor`
+- Documentation: `@prd-writer`, `@documentation-specialist`, `@api-documenter`
+- DevOps & Infrastructure: `@devops-engineer`, `@git-manager`, `@database-specialist`
+- Specialized: `@code-refactorer`, `@performance-engineer`, `@ui-ux-designer`
 
-#### **Tier-1 Primary Agents** (High Priority):
-```yaml
-universal_solvers:
-  general-purpose:
-    capabilities: ["complex_problem_solving", "multi_domain_analysis"]
-    parallel_support: true
-    avg_completion_time: "45-120s"
+Each agent declares: `name`, `description`, `triggers`, `capabilities`, `constraints`.
 
-  planner:
-    capabilities: ["strategic_planning", "task_decomposition", "resource_allocation"]
-    parallel_support: true
-    avg_completion_time: "30-90s"
+### Coordination Protocol
 
-  coder:
-    capabilities: ["code_implementation", "optimization", "debugging"]
-    parallel_support: true
-    avg_completion_time: "60-180s"
-```
+All subagents follow **pause-review-continue** cycle:
 
-#### **Tier-2 Specialized Agents** (Domain Expert):
-```yaml
-architecture_experts:
-  - system-architect: "System design & patterns"
-  - architecture: "High-level architecture planning"
+1. **Plan** → Analyze task and break into atomic steps
+2. **Act** → Execute focused implementation
+3. **Report** → Summarize changes, tests, blockers
+4. **Pause** → Wait for orchestrator review
+5. **Continue** (or Reassign) → Proceed or delegate based on feedback
 
-development_specialists:
-  - backend-dev: "API, database, server-side"
-  - frontend-dev: "UI/UX, client-side"
-  - mobile-dev: "React Native, iOS, Android"
+### Conflict Resolution Rules
 
-analysis_experts:
-  - researcher: "Deep research & information gathering"
-  - analyst: "Code analysis & optimization"
-  - code-analyzer: "Advanced code review"
+**Tie-breaking order**:
+1. `@mention` (explicit user control)
+2. `task_patterns` (highest semantic precision)
+3. `keywords` (frequency and strength)
+4. `domains` (category match)
+5. `file_patterns` (contextual bonus)
 
-quality_assurance:
-  - tester: "Comprehensive testing"
-  - reviewer: "Code review & validation"
-  - performance-benchmarker: "Performance optimization"
+**Risk-based confirmation**:
+- Database migrations → require approval
+- Authentication/authorization changes → require approval
+- Data deletion or schema breaking changes → require approval
+- Deployment to production → require approval
 
-coordination_layer:
-  - swarm-orchestration: "Multi-agent coordination"
-  - adaptive-coordinator: "Dynamic topology management"
-  - flow-nexus-swarm: "Cloud-based swarm deployment"
-```
+### Fallback Strategy
 
-### 🔥 Performance Enhancement Rules
+**Insufficient confidence** (`< 0.7`):
+- Ask **one clarifying question** about goal and constraints
+- Example: "Should I focus on research first or direct implementation?"
 
-#### **CRITICAL EXECUTION RULES:**
-```yaml
-mandate_1: "ALWAYS use Task tool first - NEVER implement directly"
-mandate_2: "VERIFY agent availability BEFORE delegation"
-mandate_3: "USE optimal agent type based on task scoring"
-mandate_4: "ENABLE parallel execution for eligible tasks"
-mandate_5: "PROVIDE complete context and clear instructions"
-```
+**Multi-domain tasks**:
+- Sequential delegation: `@planner-researcher` → `@backend-developer` → `@tester`
+- Parallel for independent work: spawn 2-3 specialists, merge results
 
-#### **Smart Delegation Triggers:**
-- **Complexity Score ≥ 7**: Auto-delegate to primary agents
-- **Multi-domain Requirement**: Parallel agent deployment
-- **Time-critical Tasks**: High-priority agent assignment
-- **Resource-heavy Tasks**: Pre-allocated agent pool
+**Ambiguous scope**:
+- Present top-2 agent candidates with brief rationale
+- Let user choose or provide additional context
 
-### 📈 Real-time Performance Monitoring
+### Integration with Hooks
 
-#### **Execution Metrics:**
-```yaml
-kpi_targets:
-  delegation_success_rate: ">95%"
-  agent_utilization_rate: ">80%"
-  task_completion_time: "<30% improvement"
-  parallel_execution_efficiency: ">40% speed gain"
-```
+Current `settings.json` enables:
+- `--auto-assign-agents true` in `PreToolUse` for Write|Edit|MultiEdit
+- Auto-context loading via `--load-context true`
+- This policy extends conversation-level routing to match file-level automation
 
-#### **Quality Assurance Pipeline:**
-1. **Pre-delegation Validation** - Verify agent readiness
-2. **During-execution Monitoring** - Real-time progress tracking
-3. **Post-execution Verification** - Quality and completeness check
-4. **Performance Feedback Loop** - Continuous optimization
+### Example Triggers
 
-### 🚨 Advanced Fallback Protocols
+| User Request | Selected Agent | Reason |
+|--------------|----------------|--------|
+| "find where login is implemented" | `@code-searcher` | keywords: find/where + domains: search/navigation |
+| "research JWT and design auth plan" | `@planner-researcher` | keywords: research/design/plan + domains: architecture |
+| "implement CRUD API for products" | `@backend-developer` | task_patterns: "implement * api" + keywords: implement/crud/api |
+| "fix bug in payment processing" | `@debug-specialist` | keywords: fix/bug + domains: debugging |
+| "write tests for user service" | `@tester` | keywords: test/write + file_patterns: *service* |
+| "optimize database queries" | `@performance-engineer` | keywords: optimize + domains: performance |
 
-#### **Multi-level Fallback Strategy:**
-```yaml
-level_1: "Switch to similar agent in same category"
-level_2: "Escalate to higher-tier agent"
-level_3: "Combine multiple specialized agents"
-level_4: "Direct implementation with enhanced validation"
-```
+### Quality Checks
 
-#### **Error Recovery Patterns:**
-- **Circuit Breaker**: Prevent cascading failures
-- **Exponential Backoff**: Intelligent retry mechanism
-- **Graceful Degradation**: Maintain functionality during failures
-- **Auto-healing**: Self-recovery capabilities
+- **Logging**: Record `selected_agent`, `confidence`, `matching_criteria` (no secrets)
+- **Metrics**: Track activation accuracy, user override rate, task completion
+- **Feedback loop**: Learn from manual overrides to improve auto-matching
 
-### ⚡ Task Complexity Classification
+### Usage
 
-#### **DELEGATE-REQUIRED Tasks** (Score ≥ 7):
-- **Multi-step workflows** (3+ actions, +2 points)
-- **Code implementation** (+3 points)
-- **Complex research/analysis** (+2 points)
-- **Multiple file operations** (+1 point per file)
-- **System architecture** (+3 points)
-- **Performance optimization** (+2 points)
-- **Security analysis** (+3 points)
-- **Testing/validation** (+2 points)
-
-#### **DIRECT-IMPLEMENTATION Tasks** (Score < 7):
-- Simple questions/explanations (0 points)
-- Single file operations (1 point)
-- Basic information requests (1 point)
-- Status checks (1 point)
-
-### 🎮 Advanced Usage Patterns
-
-**Basic Delegation:**
-```bash
-# Automatic based on complexity score
-Task tool analyzes → Agent selection → Execution
-```
-
-**Advanced Delegation:**
-```bash
-# Manual agent specification
-Task: subagent_type="general-purpose" + parallel=true
-
-# Multi-agent coordination
-Task: subagent_type="swarm-orchestration" + agent_pool=["coder","tester","reviewer"]
-```
-
-**Performance Mode:**
-```bash
-# High-priority tasks
-Task: priority="high" + timeout=600000 + fallback_strategy="aggressive"
-
-# Parallel execution
-Task: execution_mode="parallel" + max_agents=5
-```
+- **Automatic**: Orchestrator applies policy to every user request
+- **Manual override**: Use `@agent-name` to force specific specialist
+- **On-demand check**: Run `/auto-subagents` slash command to see matching analysis
 
 ---
-
-**🔥 HIGH-PERFORMANCE VERSION 3.0** - Optimized for maximum throughput, intelligent coordination, and adaptive resource management
