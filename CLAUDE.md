@@ -52,69 +52,93 @@ Primary agent (orchestrator) automatically activates specialist subagents based 
 
 ### Agent Discovery
 
-**55+ specialist agents** available in `agents/` directory, organized by functional groups:
+**53 production-ready agents** available in `agents/` directory, organized by 3 tiers:
 
-#### **Security & Quality (4 core agents)**
-High-priority agents for code safety, testing, and production reliability:
+---
+
+### **Tier 1: Core Production Agents (16 agents)** ⭐⭐⭐
+
+#### **Security & Quality (4 agents)** 🛡️
+Mission-critical agents for code safety, testing, and production reliability:
 - `@security-auditor` - Comprehensive security audit, vulnerability scanning, OWASP compliance
 - `@code-reviewer` - Code quality, best practices, static analysis, security patterns  
 - `@tester` - Test suite execution, coverage analysis (≥80% unit, ≥70% integration), QA validation
 - `@performance-engineer` - Performance optimization, benchmarking, bottleneck detection
 
-**Auto-activation triggers**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization, benchmark
+**Auto-activation triggers**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization
 
 ---
 
-#### **Development (6 core agents)**
-Implementation specialists for backend, frontend, database, infrastructure, and data engineering:
-- `@backend-architect` - Backend system design, API architecture (REST/GraphQL/gRPC), microservices
-- `@frontend-developer` - Frontend implementation, React/Vue, UI components, responsive design
-- `@database-specialist` - Database design, query optimization, migrations, indexing strategies
-- `@devops-engineer` - Infrastructure, CI/CD, deployment automation, container orchestration
-- `@mobile-developer` - Mobile app development (iOS/Android), React Native, native platforms
-- `@data-engineer` - Data pipelines, ETL workflows, analytics, data warehouse design
+#### **Architecture & Planning (5 agents)** 📐
+Strategic agents for system design and research:
+- `@planner-researcher` - Technical research, system design, planning, best practices
+- `@architect-review` - Architecture review, design patterns, system evaluation
+- `@backend-architect` - Backend systems, API design (REST/GraphQL/gRPC), microservices
+- `@graphql-architect` - GraphQL schema, federation, resolver optimization, DataLoader
+- `@cloud-architect` - Cloud architecture, AWS/GCP/Azure, infrastructure as code
 
-**Auto-activation triggers**: backend, frontend, api, database, sql, devops, deployment, ci/cd, mobile, ios, android, data pipeline, etl
-
----
-
-#### **Architecture & Planning (5 core agents)**
-Strategic agents for research, design, analysis, and documentation:
-- `@planner-researcher` - Technical research, system design, planning, best practices analysis
-- `@architect-review` - Architecture review, design patterns, system evaluation, technical assessment
-- `@code-searcher` - Codebase analysis, pattern detection, dependency mapping, code navigation
-- `@context-manager` - Context management, memory coordination, RAG optimization, context engineering
-- `@docs-architect` - Documentation architecture, technical writing, API documentation, developer guides
-
-**Auto-activation triggers**: research, plan, architecture, design, analyze, review, search, find, context, documentation, docs
+**Auto-activation triggers**: research, plan, architecture, design, analyze, microservices, graphql, cloud
 
 ---
 
-#### **Specialized (7+ domain experts)**
-Language-specific and technology-specific specialists:
-- `@graphql-architect` - GraphQL schema design, resolver optimization, federation, DataLoader patterns
-- `@golang-pro` - Go development, concurrency patterns, goroutines, channels
-- `@python-pro` - Python development, async programming, FastAPI, Django
+#### **Development (7 agents)** 💻
+Core implementation specialists:
+- `@frontend-developer` - React/Vue, UI components, responsive design, modern frameworks
+- `@mobile-developer` - React Native, Flutter, iOS/Android, native platforms
+- `@database-specialist` - Database design, query optimization, migrations, indexing
+- `@devops-engineer` - CI/CD, infrastructure automation, container orchestration
+- `@data-engineer` - ETL workflows, data pipelines, analytics, data warehouse
+- `@code-searcher` - Codebase analysis, pattern detection, dependency mapping, navigation
+- `@codebase-research-analyst` - Deep codebase research, architecture analysis, impact assessment
+
+**Auto-activation triggers**: frontend, mobile, database, devops, deployment, ci/cd, data pipeline, search, analyze, architecture
+
+---
+
+### **Tier 2: Specialized Experts (12 agents)** ⭐⭐
+
+#### **Language Specialists (7 agents)** 🎯
+Language-specific and technology experts:
 - `@typescript-expert` - TypeScript, type safety, advanced patterns, generics
+- `@python-pro` - Python, async programming, FastAPI, Django, type hints
+- `@golang-pro` - Go development, concurrency, goroutines, channels
 - `@rust-pro` - Rust systems programming, memory safety, zero-cost abstractions
-- `@blockchain-developer` - Smart contracts, Web3 integration, Solidity, dApp development
-- `@ml-engineer` - Machine learning, model deployment, training pipelines, MLOps
+- `@ruby-pro` - Ruby, SOLID principles, service objects, RSpec testing
+- `@blockchain-developer` - Smart contracts, Solidity, Web3, dApp development
+- `@hyperledger-fabric-developer` - Hyperledger Fabric, chaincode, permissioned blockchain
 
-**Auto-activation triggers**: graphql, golang, go, python, typescript, rust, blockchain, solidity, web3, machine learning, ml, model
+**Auto-activation triggers**: typescript, python, golang, rust, ruby, blockchain, solidity, web3, hyperledger
 
 ---
 
-#### **Additional Specialists (30+ agents)**
+#### **Data & AI (3 agents)** 🤖
+Machine learning and data science specialists:
+- `@ml-engineer` - Machine learning, model deployment, training pipelines, MLOps
+- `@data-scientist` - Data analysis, statistical modeling, predictive analytics
+- `@context-manager` - Context management, RAG optimization, memory coordination
+
+**Auto-activation triggers**: machine learning, ml, mlops, data science, rag, context
+
+---
+
+#### **Design & UX (2 agents)** 🎨
+UI/UX design specialists:
+- `@ui-ux-designer` - UI/UX design, accessibility (WCAG), design systems, user research
+- `@frontend-designer` - Frontend design implementation, component libraries
+
+**Auto-activation triggers**: ui, ux, design, accessibility, wcag, design system
+
+---
+
+### **Tier 3: Extended Coverage (25 agents)** ⭐
+
 Extended coverage for specialized workflows:
-- **Refactoring & Modernization**: `@code-refactor-master`, `@legacy-modernizer`
-- **Debugging & Troubleshooting**: `@debug-specialist`
-- **UI/UX & Design**: `@ui-ux-designer`, `@frontend-designer`
-- **Project Management**: `@project-analyst`, `@project-task-planner`, `@prd-writer`, `@planning-strategist`
-- **Content & Writing**: `@content-writer`, `@technical-documentation-specialist`, `@web-research-specialist`
-- **Finance & Trading**: `@quant-analyst`, `@crypto-analyst`, `@crypto-trader`, `@crypto-risk-manager`, `@defi-strategist`, `@arbitrage-bot`
-- **Blockchain Specialized**: `@hyperledger-fabric-developer`
-- **Language Specific**: `@php-developer`, `@ruby-pro`
-- **Other**: `@game-developer`, `@payment-integration`, `@data-scientist`, `@vibe-coding-coach`, `@tech-knowledge-assistant`, `@memory-bank-synchronizer`, `@plan-reviewer`, `@refactor-planner`, `@get-current-datetime`, `@cloud-architect`
+- **Quality & Refactoring (3)**: `@debug-specialist`, `@code-refactor-master`, `@plan-reviewer`
+- **Planning & Coordination (3)**: `@planning-strategist`, `@project-task-planner`, `@refactor-planner`
+- **Documentation & Content (4)**: `@docs-architect`, `@technical-documentation-specialist`, `@prd-writer`, `@content-writer`
+- **Finance & Trading (6)**: `@quant-analyst`, `@crypto-analyst`, `@crypto-trader`, `@crypto-risk-manager`, `@defi-strategist`, `@arbitrage-bot`
+- **Specialized Domains (6)**: `@game-developer`, `@payment-integration`, `@php-developer`, `@legacy-modernizer`, `@web-research-specialist`, `@vibe-coding-coach`
+- **Utilities & Support (3)**: `@memory-bank-synchronizer`, `@tech-knowledge-assistant`, `@get-current-datetime`
 
 ---
 

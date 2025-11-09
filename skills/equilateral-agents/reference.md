@@ -4,49 +4,124 @@
 
 ---
 
-## 22+ Available Agents
+## 53 Production-Ready Agents
 
-### Security & Quality (4 agents)
+### **Tier 1: Core Production Agents (16 agents)** ⭐⭐⭐
+
+#### **Security & Quality (4 agents)** 🛡️
 
 | Agent Name | Location | Capabilities |
 |------------|----------|--------------|
 | **security-auditor** | `agents/security-auditor.md` | Comprehensive security audit, vulnerability scanning, OWASP compliance |
 | **code-reviewer** | `agents/code-reviewer.md` | Code quality, best practices, static analysis, security patterns |
-| **tester** | `agents/tester.md` | Test execution, coverage analysis, QA validation |
+| **tester** | `agents/tester.md` | Test execution, coverage ≥80% unit / ≥70% integration, QA validation |
 | **performance-engineer** | `agents/performance-engineer.md` | Performance optimization, benchmarking, bottleneck detection |
 
-### Development (6 agents)
+**Auto-activation**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization
+
+#### **Architecture & Planning (5 agents)** 📐
 
 | Agent Name | Location | Capabilities |
 |------------|----------|--------------|
-| **backend-architect** | `agents/backend-architect.md` | Backend system design, API architecture, microservices |
-| **frontend-developer** | `agents/frontend-developer.md` | Frontend implementation, React/Vue, UI components |
-| **database-specialist** | `agents/database-specialist.md` | Database design, query optimization, migrations |
-| **devops-engineer** | `agents/devops-engineer.md` | Infrastructure, CI/CD, deployment automation |
-| **mobile-developer** | `agents/mobile-developer.md` | Mobile app development (iOS/Android) |
-| **data-engineer** | `agents/data-engineer.md` | Data pipelines, ETL, analytics |
+| **planner-researcher** | `agents/planner-researcher.md` | Technical research, system design, planning, best practices |
+| **architect-review** | `agents/architect-review.md` | Architecture review, design patterns, system evaluation |
+| **backend-architect** | `agents/backend-architect.md` | Backend systems, API design (REST/GraphQL/gRPC), microservices |
+| **graphql-architect** | `agents/graphql-architect.md` | GraphQL schema, federation, resolver optimization, DataLoader |
+| **cloud-architect** | `agents/cloud-architect.md` | Cloud architecture, AWS/GCP/Azure, infrastructure as code |
 
-### Architecture & Planning (5 agents)
+**Auto-activation**: research, plan, architecture, design, analyze, microservices, graphql, cloud
 
-| Agent Name | Location | Capabilities |
-|------------|----------|--------------|
-| **planner-researcher** | `agents/planner-researcher.md` | Technical research, system design, planning |
-| **architect-review** | `agents/architect-review.md` | Architecture review, design patterns |
-| **code-searcher** | `agents/code-searcher.md` | Codebase analysis, pattern detection |
-| **context-manager** | `agents/context-manager.md` | Context management, memory coordination |
-| **docs-architect** | `agents/docs-architect.md` | Documentation architecture, technical writing |
-
-### Specialized (7+ agents)
+#### **Development (7 agents)** 💻
 
 | Agent Name | Location | Capabilities |
 |------------|----------|--------------|
-| **graphql-architect** | `agents/graphql-architect.md` | GraphQL schema design, resolver optimization |
-| **golang-pro** | `agents/golang-pro.md` | Go development, concurrency patterns |
-| **python-pro** | `agents/python-pro.md` | Python development, async programming |
-| **typescript-expert** | `agents/typescript-expert.md` | TypeScript, type safety, advanced patterns |
-| **rust-pro** | `agents/rust-pro.md` | Rust systems programming, memory safety |
-| **blockchain-developer** | `agents/blockchain-developer.md` | Smart contracts, Web3 integration |
-| **ml-engineer** | `agents/ml-engineer.md` | Machine learning, model deployment |
+| **frontend-developer** | `agents/frontend-developer.md` | React/Vue, UI components, responsive design, modern frameworks |
+| **mobile-developer** | `agents/mobile-developer.md` | React Native, Flutter, iOS/Android, native platforms |
+| **database-specialist** | `agents/database-specialist.md` | Database design, query optimization, migrations, indexing |
+| **devops-engineer** | `agents/devops-engineer.md` | CI/CD, infrastructure automation, container orchestration |
+| **data-engineer** | `agents/data-engineer.md` | ETL workflows, data pipelines, analytics, data warehouse |
+| **code-searcher** | `agents/code-searcher.md` | Codebase analysis, pattern detection, dependency mapping, navigation |
+| **codebase-research-analyst** | `agents/codebase-research-analyst.md` | Deep codebase research, architecture analysis, impact assessment |
+
+**Auto-activation**: frontend, mobile, database, devops, deployment, ci/cd, data pipeline, search, analyze, architecture
+
+---
+
+### **Tier 2: Specialized Experts (12 agents)** ⭐⭐
+
+#### **Language Specialists (7 agents)** 🎯
+
+| Agent Name | Location | Capabilities |
+|------------|----------|--------------|
+| **typescript-expert** | `agents/typescript-expert.md` | TypeScript, type safety, advanced patterns, generics |
+| **python-pro** | `agents/python-pro.md` | Python, async programming, FastAPI, Django, type hints |
+| **golang-pro** | `agents/golang-pro.md` | Go development, concurrency, goroutines, channels |
+| **rust-pro** | `agents/rust-pro.md` | Rust systems programming, memory safety, zero-cost abstractions |
+| **ruby-pro** | `agents/ruby-pro.md` | Ruby, SOLID principles, service objects, RSpec testing |
+| **blockchain-developer** | `agents/blockchain-developer.md` | Smart contracts, Solidity, Web3, dApp development |
+| **hyperledger-fabric-developer** | `agents/hyperledger-fabric-developer.md` | Hyperledger Fabric, chaincode, permissioned blockchain |
+
+**Auto-activation**: typescript, python, golang, rust, ruby, blockchain, solidity, web3, hyperledger
+
+#### **Data & AI (3 agents)** 🤖
+
+| Agent Name | Location | Capabilities |
+|------------|----------|--------------|
+| **ml-engineer** | `agents/ml-engineer.md` | Machine learning, model deployment, training pipelines, MLOps |
+| **data-scientist** | `agents/data-scientist.md` | Data analysis, statistical modeling, predictive analytics |
+| **context-manager** | `agents/context-manager.md` | Context management, RAG optimization, memory coordination |
+
+**Auto-activation**: machine learning, ml, mlops, data science, rag, context
+
+#### **Design & UX (2 agents)** 🎨
+
+| Agent Name | Location | Capabilities |
+|------------|----------|--------------|
+| **ui-ux-designer** | `agents/ui-ux-designer.md` | UI/UX design, accessibility (WCAG), design systems, user research |
+| **frontend-designer** | `agents/frontend-designer.md` | Frontend design implementation, component libraries |
+
+**Auto-activation**: ui, ux, design, accessibility, wcag, design system
+
+---
+
+### **Tier 3: Extended Coverage (25 agents)** ⭐
+
+#### **Quality & Refactoring (3 agents)**
+- **debug-specialist** - Debugging, root cause analysis, error fixing
+- **code-refactor-master** - Code refactoring, technical debt reduction
+- **plan-reviewer** - Plan validation, risk assessment, quality checks
+
+#### **Planning & Coordination (3 agents)**
+- **planning-strategist** - Strategic planning, requirements analysis
+- **project-task-planner** - Task planning, project management
+- **refactor-planner** - Refactoring planning, code quality improvements
+
+#### **Documentation & Content (4 agents)**
+- **docs-architect** - Documentation architecture, developer guides, API docs
+- **technical-documentation-specialist** - Technical writing, JSDoc, code documentation
+- **prd-writer** - Product requirements documents, technical specs
+- **content-writer** - Content creation, copywriting
+
+#### **Finance & Trading (6 agents)**
+- **quant-analyst** - Quantitative finance, trading algorithms, risk metrics
+- **crypto-analyst** - Crypto market analysis, technical indicators
+- **crypto-trader** - Crypto trading strategies, automated execution
+- **crypto-risk-manager** - Crypto risk management, portfolio optimization
+- **defi-strategist** - DeFi strategies, protocol analysis
+- **arbitrage-bot** - Arbitrage detection, automated trading bots
+
+#### **Specialized Domains (6 agents)**
+- **game-developer** - Game development, Unity, game mechanics
+- **payment-integration** - Stripe, PayPal, payment processors, PCI compliance
+- **php-developer** - PHP, PSR standards, Laravel, dependency injection
+- **legacy-modernizer** - Legacy system modernization, migration strategies
+- **web-research-specialist** - Web research, information gathering
+- **vibe-coding-coach** - Vision-driven coding, creative development
+
+#### **Utilities & Support (3 agents)**
+- **memory-bank-synchronizer** - Memory management, documentation sync
+- **tech-knowledge-assistant** - Knowledge sharing, education, concept explanation
+- **get-current-datetime** - Date/time utilities, timezone handling
 
 ---
 
@@ -168,17 +243,42 @@ Lead Agent analyzes → Spawns optimal agents → Adjusts based on findings
 
 ## Agent Mapping (Old → New)
 
-| Old Agent (External) | New Agent (Native) |
-|---------------------|-------------------|
-| SecurityScannerAgent | security-auditor |
-| CodeReviewerAgent | code-reviewer |
-| TestOrchestrationAgent | tester |
-| DeploymentValidationAgent | devops-engineer |
-| BackendAuditorAgent | backend-architect |
-| FrontendAuditorAgent | frontend-developer |
-| CodeAnalyzerAgent | code-searcher |
-| PerformanceAnalysisAgent | performance-engineer |
-| DatabaseOptimizationAgent | database-specialist |
+### Core Mappings
+| Old Agent (External) | New Agent (Native) | Tier |
+|---------------------|-------------------|------|
+| SecurityScannerAgent | security-auditor | Tier 1 |
+| CodeReviewerAgent | code-reviewer | Tier 1 |
+| TestOrchestrationAgent | tester | Tier 1 |
+| PerformanceAnalysisAgent | performance-engineer | Tier 1 |
+| BackendAuditorAgent | backend-architect | Tier 1 |
+| FrontendAuditorAgent | frontend-developer | Tier 1 |
+| CodeAnalyzerAgent | code-searcher | Tier 1 |
+| CodebaseResearchAgent | codebase-research-analyst | Tier 1 |
+| DatabaseOptimizationAgent | database-specialist | Tier 1 |
+| DeploymentValidationAgent | devops-engineer | Tier 1 |
+| DataPipelineAgent | data-engineer | Tier 1 |
+| MobileAppAgent | mobile-developer | Tier 1 |
+
+### Architecture & Planning
+| Old Agent | New Agent | Tier |
+|-----------|-----------|------|
+| TechnicalResearchAgent | planner-researcher | Tier 1 |
+| ArchitectureReviewAgent | architect-review | Tier 1 |
+| GraphQLArchitectAgent | graphql-architect | Tier 1 |
+| CloudArchitectAgent | cloud-architect | Tier 1 |
+| DocumentationAgent | docs-architect | Tier 1 |
+
+### Specialized Mappings (Tier 2)
+| Old Agent | New Agent |
+|-----------|-----------|
+| TypeScriptAgent | typescript-expert |
+| PythonAgent | python-pro |
+| GolangAgent | golang-pro |
+| RustAgent | rust-pro |
+| BlockchainAgent | blockchain-developer |
+| MLAgent | ml-engineer |
+| ContextAgent | context-manager |
+| UIUXAgent | ui-ux-designer |
 
 ---
 
@@ -354,7 +454,7 @@ await Task.spawn(...)
 
 ### Agents
 - **Directory**: `agents/`
-- **Count**: 22+ production-ready agents
+- **Count**: 53 production-ready agents (16 Tier 1 + 12 Tier 2 + 25 Tier 3)
 - **Format**: Markdown agent definitions
 
 ### External Resources

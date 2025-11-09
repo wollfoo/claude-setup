@@ -41,37 +41,122 @@ Dựa trên [Anthropic Multi-Agent Research System](https://www.anthropic.com/en
     └─────────────────┘
 ```
 
-## 📋 Available Agents (22 Agents Thực Tế)
+## 📋 Available Agents (53 Production-Ready Agents)
 
-### **Security & Quality (4 agents)**
-- `security-auditor` - Comprehensive security audit, vulnerability scanning
-- `code-reviewer` - Code quality, best practices, static analysis
-- `tester` - Test suite execution, coverage analysis, QA
-- `performance-engineer` - Performance optimization, benchmarking
+### **Tier 1: Core Production Agents (16 agents)** ⭐⭐⭐
 
-### **Development (6 agents)**
-- `backend-architect` - Backend system design, API architecture
-- `frontend-developer` - Frontend implementation, React/Vue
-- `database-specialist` - Database design, query optimization
-- `devops-engineer` - Infrastructure, CI/CD, deployment
-- `mobile-developer` - Mobile app development (iOS/Android)
-- `data-engineer` - Data pipelines, ETL, analytics
+#### **1. Security & Quality (4 agents)** 🛡️
+Mission-critical agents cho code safety và production reliability:
+- `security-auditor` - Comprehensive security audit, vulnerability scanning, OWASP compliance
+- `code-reviewer` - Code quality, best practices, static analysis, security patterns
+- `tester` - Test execution, coverage ≥80% unit / ≥70% integration, QA validation
+- `performance-engineer` - Performance optimization, benchmarking, bottleneck detection
 
-### **Architecture & Planning (5 agents)**
-- `planner-researcher` - Technical research, system design, planning
-- `architect-review` - Architecture review, design patterns
-- `code-searcher` - Codebase analysis, pattern detection
-- `context-manager` - Context management, memory coordination
-- `docs-architect` - Documentation architecture, technical writing
+**Auto-activation**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization
 
-### **Specialized (7 agents)**
-- `graphql-architect` - GraphQL schema design, resolver optimization
-- `golang-pro` - Go development, concurrency patterns
-- `python-pro` - Python development, async programming
-- `typescript-expert` - TypeScript, type safety, advanced patterns
-- `rust-pro` - Rust systems programming, memory safety
-- `blockchain-developer` - Smart contracts, Web3 integration
-- `ml-engineer` - Machine learning, model deployment
+---
+
+#### **2. Architecture & Planning (5 agents)** 📐
+Strategic agents cho system design và research:
+- `planner-researcher` - Technical research, system design, planning, best practices
+- `architect-review` - Architecture review, design patterns, system evaluation
+- `backend-architect` - Backend systems, API design (REST/GraphQL/gRPC), microservices
+- `graphql-architect` - GraphQL schema, federation, resolver optimization, DataLoader
+- `cloud-architect` - Cloud architecture, AWS/GCP/Azure, infrastructure as code
+
+**Auto-activation**: research, plan, architecture, design, analyze, microservices, graphql, cloud
+
+---
+
+#### **3. Development (7 agents)** 💻
+Core implementation specialists:
+- `frontend-developer` - React/Vue, UI components, responsive design, modern frameworks
+- `mobile-developer` - React Native, Flutter, iOS/Android, native platforms
+- `database-specialist` - Database design, query optimization, migrations, indexing
+- `devops-engineer` - CI/CD, infrastructure automation, container orchestration
+- `data-engineer` - ETL workflows, data pipelines, analytics, data warehouse
+- `code-searcher` - Codebase analysis, pattern detection, dependency mapping, navigation
+- `codebase-research-analyst` - Deep codebase research, architecture analysis, impact assessment
+
+**Auto-activation**: frontend, mobile, database, devops, deployment, ci/cd, data pipeline, search, analyze, architecture
+
+---
+
+### **Tier 2: Specialized Experts (12 agents)** ⭐⭐
+
+#### **4. Language Specialists (7 agents)** 🎯
+Language-specific và technology experts:
+- `typescript-expert` - TypeScript, type safety, advanced patterns, generics
+- `python-pro` - Python, async programming, FastAPI, Django, type hints
+- `golang-pro` - Go development, concurrency, goroutines, channels
+- `rust-pro` - Rust systems programming, memory safety, zero-cost abstractions
+- `ruby-pro` - Ruby, SOLID principles, service objects, RSpec testing
+- `blockchain-developer` - Smart contracts, Solidity, Web3, dApp development
+- `hyperledger-fabric-developer` - Hyperledger Fabric, chaincode, permissioned blockchain
+
+**Auto-activation**: typescript, python, golang, rust, ruby, blockchain, solidity, web3, hyperledger
+
+---
+
+#### **5. Data & AI (3 agents)** 🤖
+Machine learning và data science specialists:
+- `ml-engineer` - Machine learning, model deployment, training pipelines, MLOps
+- `data-scientist` - Data analysis, statistical modeling, predictive analytics
+- `context-manager` - Context management, RAG optimization, memory coordination
+
+**Auto-activation**: machine learning, ml, mlops, data science, rag, context
+
+---
+
+#### **6. Design & UX (2 agents)** 🎨
+UI/UX design specialists:
+- `ui-ux-designer` - UI/UX design, accessibility (WCAG), design systems, user research
+- `frontend-designer` - Frontend design implementation, component libraries
+
+**Auto-activation**: ui, ux, design, accessibility, wcag, design system
+
+---
+
+### **Tier 3: Extended Coverage (25 agents)** ⭐
+
+#### **Quality & Refactoring (3 agents)**
+- `debug-specialist` - Debugging, root cause analysis, error fixing
+- `code-refactor-master` - Code refactoring, technical debt reduction
+- `plan-reviewer` - Plan validation, risk assessment, quality checks
+
+#### **Planning & Coordination (3 agents)**
+- `planning-strategist` - Strategic planning, requirements analysis
+- `project-task-planner` - Task planning, project management
+- `refactor-planner` - Refactoring planning, code quality improvements
+
+#### **Documentation & Content (4 agents)**
+- `docs-architect` - Documentation architecture, developer guides, API docs
+- `technical-documentation-specialist` - Technical writing, JSDoc, code documentation
+- `prd-writer` - Product requirements documents, technical specs
+- `content-writer` - Content creation, copywriting
+
+#### **Finance & Trading (6 agents)**
+- `quant-analyst` - Quantitative finance, trading algorithms, risk metrics
+- `crypto-analyst` - Crypto market analysis, technical indicators
+- `crypto-trader` - Crypto trading strategies, automated execution
+- `crypto-risk-manager` - Crypto risk management, portfolio optimization
+- `defi-strategist` - DeFi strategies, protocol analysis
+- `arbitrage-bot` - Arbitrage detection, automated trading bots
+
+#### **Specialized Domains (6 agents)**
+- `game-developer` - Game development, Unity, game mechanics
+- `payment-integration` - Stripe, PayPal, payment processors, PCI compliance
+- `php-developer` - PHP, PSR standards, Laravel, dependency injection
+- `legacy-modernizer` - Legacy system modernization, migration strategies
+- `web-research-specialist` - Web research, information gathering
+- `vibe-coding-coach` - Vision-driven coding, creative development
+
+#### **Utilities & Support (3 agents)**
+- `memory-bank-synchronizer` - Memory management, documentation sync
+- `tech-knowledge-assistant` - Knowledge sharing, education, concept explanation
+- `get-current-datetime` - Date/time utilities, timezone handling
+
+**Full agent list**: See `agents/` directory (53 total agents)
 
 ## 🚀 Workflows Sử Dụng Subagents Thực Tế
 

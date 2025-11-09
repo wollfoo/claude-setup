@@ -1,0 +1,101 @@
+{
+  "numStartups": 63,
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "tipsHistory": {
+    "new-user-warmup": 1,
+    "ide-hotkey": 34,
+    "memory-command": 8,
+    "terminal-setup": 9,
+    "shift-enter": 58,
+    "theme-command": 53,
+    "prompt-queue": 36,
+    "enter-to-steer-in-relatime": 55,
+    "todo-list": 57,
+    "# for memory": 60,
+    "install-github-app": 62,
+    "permissions": 62,
+    "drag-and-drop-images": 62,
+    "plan-mode-for-complex-tasks": 63,
+    "status-line": 47,
+    "double-esc-code-restore": 54,
+    "continue": 58,
+    "custom-commands": 55,
+    "shift-tab": 58,
+    "image-paste": 44,
+    "custom-agents": 56,
+    "tab-toggle-thinking": 52,
+    "ultrathink-keyword": 52,
+    "ide-upsell-external-terminal": 56,
+    "git-worktrees": 63
+  },
+  "memoryUsageCount": 1,
+  "promptQueueUseCount": 478,
+  "cachedStatsigGates": {
+    "tengu_disable_bypass_permissions_mode": false,
+    "tengu_use_file_checkpoints": true,
+    "tengu_tool_pear": false
+  },
+  "cachedDynamicConfigs": {
+    "tengu-top-of-feed-tip": {
+      "tip": "",
+      "color": ""
+    }
+  },
+  "mcpServers": {
+    "context7": {
+      "type": "sse",
+      "url": "https://mcp.context7.com/mcp",
+      "disabled": false
+    },
+    "memory": {
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "${MEMORY_FILE_PATH:-.windsurf/memory/knowledge.json}"
+      }
+    },
+    "sequential-thinking": {
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "repomix": {
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ]
+    },
+    "mcp-playwright": {
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "hugging-face": {
+      "type": "sse",
+      "url": "https://huggingface.co/mcp",
+      "disabled": false
+    }
+  }
+}
