@@ -63,9 +63,7 @@ Mission-critical agents for code safety, testing, and production reliability:
 - `@security-auditor` - Comprehensive security audit, vulnerability scanning, OWASP compliance
 - `@code-reviewer` - Code quality, best practices, static analysis, security patterns  
 - `@tester` - Test suite execution, coverage analysis (≥80% unit, ≥70% integration), QA validation
-- `@performance-engineer` - Performance optimization, benchmarking, bottleneck detection
-
-**Auto-activation triggers**: security, vulnerability, audit, review, test, coverage, qa, performance, optimization
+**Auto-activation triggers**: security, vulnerability, audit, review, test, coverage, qa
 
 ---
 

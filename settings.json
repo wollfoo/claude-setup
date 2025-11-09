@@ -2,12 +2,22 @@
   "env": {
     "MAX_MCP_OUTPUT_TOKENS": "120000",
     "MAX_THINKING_TOKENS": "70000",
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "160000"
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000"
   },
   "includeCoAuthoredBy": false,
   "antml": {
     "max_thinking_length": 30000,
     "thinking": true
+  },
+  "streaming": {
+    "enabled": true,
+    "auto_enable_above_tokens": 21333,
+    "chunk_size": 1024,
+    "buffer_size": 4096,
+    "timeout_seconds": 300,
+    "handle_errors": true,
+    "retry_on_failure": true,
+    "max_retries": 3
   },
   "permissions": {
     "allow": [
