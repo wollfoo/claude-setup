@@ -1,23 +1,6 @@
 {
   "env": {
-    "MAX_MCP_OUTPUT_TOKENS": "120000",
-    "MAX_THINKING_TOKENS": "70000",
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000"
-  },
-  "includeCoAuthoredBy": false,
-  "antml": {
-    "max_thinking_length": 30000,
-    "thinking": true
-  },
-  "streaming": {
-    "enabled": true,
-    "auto_enable_above_tokens": 21333,
-    "chunk_size": 1024,
-    "buffer_size": 4096,
-    "timeout_seconds": 300,
-    "handle_errors": true,
-    "retry_on_failure": true,
-    "max_retries": 3
+    "MAX_MCP_OUTPUT_TOKENS": "200000"
   },
   "permissions": {
     "allow": [
@@ -72,29 +55,7 @@
       "Bash(true)",
       "Bash(uv pip install:*)",
       "Bash(uv run:*)",
-      "Bash(uv venv:*)",
-      "mcp__cf-docs__search_cloudflare_documentation",
-      "mcp__context7__get-library-docs",
-      "mcp__context7__resolve-library-id",
-      "mcp__gemini-cli__gemini_ai_collaboration",
-      "mcp__gemini-cli__gemini_cli",
-      "mcp__gemini-cli__gemini_help",
-      "mcp__gemini-cli__gemini_metrics",
-      "mcp__gemini-cli__gemini_models",
-      "mcp__gemini-cli__gemini_openrouter_models",
-      "mcp__gemini-cli__gemini_openrouter_opinion",
-      "mcp__gemini-cli__gemini_openrouter_usage_stats",
-      "mcp__gemini-cli__gemini_prompt",
-      "mcp__gemini-cli__gemini_review_code",
-      "mcp__gemini-cli__gemini_summarize",
-      "mcp__gemini-cli__gemini_summarize_files",
-      "mcp__gemini-cli__gemini_verify_solution",
-      "mcp__gemini-cli__gemini_version",
-      "mcp__ide__getDiagnostics",
-      "WebFetch(domain:docs.anthropic.com)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:openrouter.ai)",
-      "WebFetch(domain:www.comet.com)"
+      "Bash(uv venv:*)"
     ],
     "deny": [
       "Bash(rm -rf /)"
