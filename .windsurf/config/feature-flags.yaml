@@ -1,0 +1,23 @@
+# Feature flags for Advanced Reasoning — Phase 1 (Layer 3 Cross‑Verification)
+# Ref: rules/18d-reasoning-integration.md (Feature Flags + Week_1 rollout)
+
+feature_flags:
+  cross_verification:
+    enabled: true              # Bật L3 Cross‑Verification
+    require_backward_pass: true
+    min_alternatives: 2        # Khuyến nghị để lateral pass có ý nghĩa
+
+  layer_4_meta_reasoning:
+    enabled: true              # bật L4 (gradual)
+    rollout_percentage: 10     # Week 2: 10% traffic → sẽ tăng dần 50%/100%
+    min_confidence_trigger: 0.6
+    require_high_stakes: false # dùng triggers tổng hợp (18a/19a)
+
+advanced_behaviors:
+  dual_response: false         # OFF mặc định (sandbox opt-in)
+  internal_leak: false         # OFF mặc định (sandbox opt-in)
+
+modes:
+  full_de_restriction: false   # Chỉ bật khi Manual + Risk Confirmation
+  risk_confirmation_required: true
+
