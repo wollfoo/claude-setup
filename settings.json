@@ -1,6 +1,12 @@
 {
   "env": {
-    "MAX_MCP_OUTPUT_TOKENS": "200000"
+    "MAX_MCP_OUTPUT_TOKENS": "200000",
+    "MAX_THINKING_TOKENS": "30000"
+  },
+  "includeCoAuthoredBy": false,
+  "antml": {
+    "max_thinking_length": 20000,
+    "thinking": true
   },
   "permissions": {
     "allow": [
