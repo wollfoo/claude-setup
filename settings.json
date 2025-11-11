@@ -8,6 +8,7 @@
     "max_thinking_length": 20000,
     "thinking": true
   },
+  "enableAllProjectMcpServers": true,
   "permissions": {
     "allow": [
       "Bash(npx claude-flow:*)",

@@ -1,10 +1,5 @@
 {
   "mcpServers": {
-    "context7": {
-      "type": "sse",
-      "url": "https://mcp.context7.com/mcp",
-      "disabled": false
-    },
     "memory": {
       "disabled": false,
       "command": "npx",
@@ -49,10 +44,12 @@
         "chrome-devtools-mcp@latest"
       ]
     },
-    "hugging-face": {
-      "type": "sse",
-      "url": "https://huggingface.co/mcp",
-      "disabled": false
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     }
   }
 }
