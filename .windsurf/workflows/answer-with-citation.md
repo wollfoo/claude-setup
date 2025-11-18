@@ -12,14 +12,17 @@ auto_execution_mode: 3
 - Thư mục `/.windsurf/memories/` KHÔNG bị ignore bởi `.codeiumignore` hoặc `.gitignore`.
 - File `_index.md` được duy trì với danh sách đầy đủ memories.
 - Mọi memory file có frontmatter với `tags`, `related`, `status` (theo `rules/13a-local-memory-core.md`).
-- **MCP servers** khả dụng:
+- **MCP servers** khả dụng (khi không bị MCP Guard khoá):
   - **server-memory** (9 tools) — Structured knowledge graph (entities/relations/observations).
   - **jean-memory** (1 tool) — Unstructured conversational memory.
 - Critical Rules (00-17) đã active, đặc biệt:
   - `rules/13a-local-memory-core.md` — File-based storage structure.
   - `rules/13b-local-memory-advanced.md` — Semantic indexing, search optimization.
   - `rules/13c-local-memory-bridge.md` — Indexing → MCP pipeline.
-  - `rules/17b-mcp-triggers-memory.md` — Memory tools triggers.
+  - `rules/17a-mcp-core-protocol.md` — MCP core decision protocol.
+  - `rules/17z-mcp-compatibility-guard.md` — MCP compatibility guard (gate OFF by default khi không tương thích).
+  - `rules/17b-mcp-triggers-memory.md` — Memory tools triggers (nếu có trong workspace).
+- Tôn trọng MCP Guard 17z: nếu MCP bị disable cho provider hiện tại thì chỉ dùng Local Indexing; Bước 3 (Bổ sung bằng MCP) sẽ bị skip.
 
 ## Đầu vào/Đầu ra (I/O Contract)
 - **Đầu vào** (Inputs):
@@ -215,8 +218,8 @@ Expected:
 - **Security**: Scan citations cho secrets/PII trước output.
 
 ## Tích hợp với Rules khác
-- **Foundation**: `rules/13c-local-memory-bridge.md` (Indexing → MCP pipeline).
-- **Critical Rules**: `13a-local-memory-core.md`, `13b-local-memory-advanced.md`, `17b-mcp-triggers-memory.md`.
+- **Foundation**: `AGENTS.md` (mục 4.x Context & Memory) + `rules/13c-local-memory-bridge.md` (Indexing → MCP pipeline).
+- **Critical Rules**: `rules/13a-local-memory-core.md`, `rules/13b-local-memory-advanced.md`, `rules/17a-mcp-core-protocol.md`, `rules/17z-mcp-compatibility-guard.md`, `rules/17b-mcp-triggers-memory.md`.
 - **Workflows**: Integrates với `group-critical.md` (Local Memory Management steps).
 - **MCP Tools**: server-memory (9 tools), jean-memory (1 tool).
 

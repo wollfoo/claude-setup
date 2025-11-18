@@ -8,7 +8,7 @@ auto_execution_mode: 3
 **Mục tiêu**: Áp dụng **5-Layer Reasoning System** (hệ thống suy luận 5 tầng) với auto-escalation, cross-verification, meta-reasoning, expert reasoning, và comprehensive metrics/monitoring cho queries phức tạp.
 
 ## Tiền đề (Prerequisites)
-- Critical & High Rules đã active.
+- Critical & High Rules đã active, đặc biệt `AGENTS.md` (mục 5.x Advanced Reasoning & Escalation) và các file `rules/18-ADVANCED-REASONING-INDEX.md`, `rules/18a-layer4-meta-reasoning.md`, `rules/18b-layer5-expert-reasoning.md`, `rules/18c-reasoning-verification.md`, `rules/18d-reasoning-integration.md`, `rules/19a-reasoning-escalation-logic.md`, `rules/19b-cross-verification-implementation.md`.
 - Complexity scoring algorithm configured (0-10 scale).
 - Trust Point System active (start 10, +1 success, -5 refusal).
 
@@ -273,12 +273,14 @@ Expected: Forward (hypotheses) → Backward (consistency) → Lateral (alternati
 - **Emergency**: Rollback parameter changes nếu guardrails violated (error rate spike, latency breach).
 
 ## Tích hợp với Rules khác
+- **Constitution**: `AGENTS.md` (mục 5.x Advanced Reasoning & Escalation) làm khung tổng quan, workflow này là triển khai chi tiết cho nhóm Advanced.
 - **Foundation**: Critical Rules (00-17), High Rules (01-06, 10a-10b).
-- **Escalation Logic**: `19a-reasoning-escalation-logic.md`.
-- **Cross-Verification**: `19b-cross-verification-implementation.md`.
-- **Meta-Reasoning**: `18a-layer4-meta-reasoning.md`.
-- **Expert Reasoning**: `18b-layer5-expert-reasoning.md`.
-- **Metrics**: Series 20 (20a-20d).
+- **Advanced Reasoning Index**: `rules/18-ADVANCED-REASONING-INDEX.md` (mô tả pipeline 5 tầng và vai trò từng Layer).
+- **Escalation Logic**: `rules/19a-reasoning-escalation-logic.md`.
+- **Cross-Verification**: `rules/19b-cross-verification-implementation.md`.
+- **Meta-Reasoning**: `rules/18a-layer4-meta-reasoning.md`.
+- **Expert Reasoning**: `rules/18b-layer5-expert-reasoning.md`.
+- **Verification Specs**: `rules/18c-reasoning-verification.md`, `rules/18d-reasoning-integration.md`.
 
 
 ---

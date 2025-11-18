@@ -8,10 +8,10 @@ auto_execution_mode: 3
 **Mục tiêu**: Quản lý thông minh context window để tăng độ chính xác, giảm latency/chi phí, duy trì liên tục hội thoại và tích hợp liền mạch với hệ thống workflow hiện tại (Critical/High/Advanced/Answer with Citation).
 
 ## Tiền đề (Prerequisites)
-- Critical Rules đã active: `12-context-engineering.md`, `14a-context-coordination-core.md`, `13a-local-memory-core.md`.
+- Critical Rules đã active: `rules/12-context-engineering.md`, `rules/14a-context-coordination-core.md`, `rules/13a-local-memory-core.md`, cùng với mục 4.x (Context & Memory) trong `AGENTS.md`.
 - Semantic Index sẵn sàng (Local memories `/.windsurf/memories/` có `_index.md`, `tags/related/status`).
 - CE thresholds: `usage_high=0.7`, `checkpoint=0.8`, `reset=0.9`.
-- Observability bật: event schema theo `rules/20a-observability-metrics-pipeline.md`.
+- Observability bật: có event schema rõ ràng cho các event context/metrics (latency, confidence, consistency, v.v.).
 
 ## Đầu vào/Đầu ra (I/O Contract)
 - **Inputs**:
@@ -87,10 +87,11 @@ auto_execution_mode: 3
 - Test 5 (Citation): đầu ra có `file:line-range`, Local trước MCP.
 
 ## Tích hợp (Integration)
-- **Critical**: 12-CE, 13a Local Memory, 14a Coordination, 17b Memory triggers.
-- **High**: 02-Workflow Standards (Analyze→Plan→Execute→Verify→Report), 10a/10b (Vietnamese-first, format, ≥500 words khi cần).
-- **Advanced**: phối hợp Layer 3 (verification) và Layer 4 (meta) khi high-stakes.
-- **Answer with Citation**: giữ luồng Local-first → MCP; đồng bộ template.
+- **Constitution**: `AGENTS.md` (mục 4.x Context Engineering, Context Coordination, Tactical Discovery, Drift Prevention).
+- **Critical Rules**: `rules/12-context-engineering.md`, `rules/13a-local-memory-core.md`, `rules/14a-context-coordination-core.md`, `rules/14b-context-coordination-advanced.md`, `rules/17b-mcp-triggers-memory.md` (nếu có trong workspace).
+- **High Rules**: `rules/02-workflow-standards.md` (Analyze→Plan→Execute→Verify→Report), `rules/10a-communication-core.md`, `rules/10b-communication-advanced.md`.
+- **Advanced Reasoning**: phối hợp Layer 3 (verification) và Layer 4 (meta) khi high-stakes theo `rules/18-ADVANCED-REASONING-INDEX.md` và các file 18a–18d.
+- **Answer with Citation**: giữ luồng Local-first → MCP; đồng bộ template với workflow `answer-with-citation.md` dựa trên `rules/13c-local-memory-bridge.md`.
 
 ---
 **Status**: Production-Ready ✅  
