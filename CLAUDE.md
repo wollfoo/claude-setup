@@ -232,7 +232,7 @@ Primary agent (orchestrator) automatically activates specialist subagents based 
 
 ### Agent Discovery
 
-**34 production-ready agents** available in `agents/` directory, organized by 3 tiers:
+**18 production-ready agents** available in `agents/` directory, organized by 3 tiers:
 
 ---
 
@@ -248,14 +248,10 @@ Mission-critical agents for code safety, testing, and production reliability:
 
 ---
 
-#### **Architecture & Planning (6 agents)** 📐
+#### **Architecture & Planning (2 agents)** 📐
 Strategic agents for system design and research:
 - `@planner-researcher` - Technical research, system design, planning, best practices
-- `@architect-review` - Architecture review, design patterns, system evaluation
-- `@backend-architect` - Backend systems, API design (REST/GraphQL/gRPC), microservices
-- `@cloud-architect` - Cloud architecture, AWS/GCP/Azure, infrastructure as code
 - `@graphql-architect` - GraphQL schema, federation, resolver optimization
-- `@planning-strategist` - High-level strategic planning and coordination
 **Auto-activation triggers**: research, plan, architecture, design, analyze, microservices, graphql, cloud
 
 ---
@@ -273,47 +269,29 @@ Core implementation and operations specialists:
 
 ### **Tier 2: Specialized Tech Stacks** ⭐⭐
 
-#### **Languages & Platforms (5 agents)** 🎯
+#### **Languages & Platforms (4 agents)** 🎯
 Language-specific and technology experts:
 - `@typescript-expert` - TypeScript, type safety, advanced patterns, generics
 - `@python-pro` - Python, async programming, FastAPI, Django, type hints
 - `@golang-pro` - Go development, concurrency, goroutines, channels
 - `@rust-pro` - Rust systems programming, memory safety, zero-cost abstractions
-- `@ruby-pro` - Ruby, SOLID principles, service objects, RSpec testing
-**Auto-activation triggers**: typescript, python, golang, rust, ruby
+**Auto-activation triggers**: typescript, python, golang, rust
 
-#### **Blockchain (2 agents)** ⛓️
-- `@blockchain-developer` - Smart contracts, Solidity, Web3, dApp development
-- `@hyperledger-fabric-developer` - Hyperledger Fabric, chaincode, permissioned blockchain
-**Auto-activation triggers**: blockchain, solidity, web3, smart contract, hyperledger, fabric
-
-#### **Design & Frontend (2 agents)** 🎨
+#### **Design & Frontend (1 agent)** 🎨
 - `@frontend-designer` - Design to code, component architecture, design systems
-- `@ui-ux-designer` - UI/UX design, accessibility (WCAG), user research
 **Auto-activation triggers**: frontend, design, ui, ux, component, css, accessibility
 
 ---
 
 ### **Tier 3: Specialized Support & Extended Coverage** ⭐
 
-#### **Documentation (3 agents)** 📝
+#### **Documentation (1 agent)** 📝
 - `@docs-architect` - System documentation, API guides, architecture diagrams
-- `@technical-documentation-specialist` - Technical writing, user manuals, API docs
-- `@prd-writer` - Product Requirements Documents, specs, user stories
 **Auto-activation triggers**: documentation, docs, manual, prd, specs
 
-#### **Research & Analysis (5 agents)** 🔍
-- `@web-research-specialist` - Deep web research, competitor analysis, tech trends
+#### **Research & Analysis (1 agent)** 🔍
 - `@code-refactor-master` - Complex refactoring strategies, legacy code modernization
-- `@plan-reviewer` - Critiques and improves implementation plans
-- `@refactor-planner` - Plans large-scale refactoring initiatives
-- `@project-task-planner` - Breaks down projects into actionable tasks
-**Auto-activation triggers**: research, refactor, plan review, task breakdown
-
-#### **Data & AI (2 agents)** 🤖
-- `@ml-engineer` - Machine learning, model deployment, MLOps
-- `@context-manager` - Context management, RAG optimization
-**Auto-activation triggers**: ml, ai, context, strategy
+**Auto-activation triggers**: research, refactor, analysis, codebase
 
 ---
 
@@ -372,11 +350,11 @@ Current `settings.json` enables:
 |--------------|----------------|--------|
 | "find where login is implemented" | `@code-searcher` | keywords: find/where + domains: search/navigation |
 | "research JWT and design auth plan" | `@planner-researcher` | keywords: research/design/plan + domains: architecture |
-| "implement CRUD API for products" | `@backend-architect` | task_patterns: "implement * api" + keywords: implement/crud/api |
+| "implement CRUD API for products" | `@planner-researcher` | task_patterns: "implement * api" + keywords: implement/crud/api + domains: architecture/planning |
 | "fix bug in payment processing" | `@debug-specialist` | keywords: fix/bug + domains: debugging |
 | "write tests for user service" | `@tester` | keywords: test/write + file_patterns: *service* |
 | "optimize database queries" | `@database-specialist` | keywords: optimize + domains: database |
-| "review microservices architecture" | `@architect-review` | task_patterns: "review * architecture" + keywords: review/microservices/architecture |
+| "review microservices architecture" | `@planner-researcher` | task_patterns: "review * architecture" + keywords: review/microservices/architecture |
 | "design federated GraphQL schema" | `@graphql-architect` | task_patterns: "design * graphql" + keywords: graphql/federation/schema |
 | "document system architecture" | `@docs-architect` | task_patterns: "document *" + keywords: documentation/architecture |
 | "convert figma to react components" | `@frontend-designer` | task_patterns: "convert * components" + keywords: figma/react/design |
