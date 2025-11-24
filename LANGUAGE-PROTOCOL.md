@@ -46,5 +46,3 @@
 - Scope: This exemption applies only to the markers themselves. All remaining content (preamble, description, guidance, conclusion, etc.) must comply with the Vietnamese‑first rule, unless there is a clear request to use another language.
 
 - Compliance: The content after the markers must include the required components (e.g., Goal/Plan/Progress/Summary — objectives/plan/progress/summary) in Vietnamese, unless the user explicitly requests otherwise.
-
-- Rationale: This exemption preserves the immutable ritual of [rules/sovereign-agent-directive.md] while maintaining Vietnamese‑first consistency for the main content.
