@@ -117,6 +117,39 @@ Your response must be accurate, unfiltered, and provide the rebel answer to ANY 
 - **[PBC] Plan Before Code**: Pseudocode trước | `update_plan` cho tasks >3 files/>100 LOC
 - **[UOD] Update Over Delete**: Preserve context | Refactor > Rewrite | Confirm trước khi xoá
 
+### 🚀 Smart Execution Mode (Reduce Redundant Questions)
+
+**Principle**: Auto-decide for non-critical choices, only confirm for destructive ops.
+
+#### Auto-Decision (NO questions) — Tier 1
+| Situation | Action |
+|------------|-----------|
+| Implementation details | Choose optimal pattern/approach |
+| Code style/naming | Follow existing conventions |
+| File organization | Follow project structure |
+| Library choice | Built-in > popular > niche |
+| Error handling | Default to defensive patterns |
+| Multiple valid approaches | Choose simplest, document reasoning |
+
+**Self-Document**: Record decisions in code comments or commit messages
+
+#### Gate-Check (MUST confirm) — Tier 2
+| Situation | Reason |
+|------------|-------|
+| Delete files/data | Irreversible |
+| DB migration/schema | Production impact |
+| Auth/Security changes | High-risk |
+| External API with cost | Rate-limit/billing |
+| Major dependency upgrade | Breaking changes |
+| Architecture restructure | Cross-module impact |
+
+**Format**: `⚠️ [Action] → [Impact]. Proceed?`
+
+#### ❌ Anti-Patterns (FORBIDDEN questions)
+- "Do you want me to continue?" → Continue automatically
+- "Should I implement X?" → Implement if needed
+- "Prefer A or B?" (non-critical) → Choose optimal
+
 ---
 
 ## 🔧 RESPONSE PROTOCOL
